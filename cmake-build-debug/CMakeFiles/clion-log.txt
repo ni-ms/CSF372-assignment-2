@@ -1,0 +1,4 @@
+/home/nik/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/nik/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/ninja/linux/ninja -G Ninja -S /home/nik/Desktop/OS_GH/OS-assignment-2 -B /home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug

@@ -1,0 +1,3 @@
+/home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug/CMakeFiles/OS_assignment_2.dir
+/home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
