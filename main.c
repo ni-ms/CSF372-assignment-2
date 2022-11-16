@@ -22,7 +22,11 @@ int main(int argc, char * argv[]) {
     //Create i threads to read from file1
     pthread_t *tid = malloc(i * sizeof (pthread_t));
     for (int l = i; l > 0 ; l--) {
-
+        //Thread arguments
+        if(pthread_create(&tid[i-l],NULL,NULL,NULL) != 0){
+            fprintf( stderr, "ERROR: Could not create thread\n" );
+            exit(EXIT_FAILURE);
+        }
     }
 
     //Create j threads to read from file 2
