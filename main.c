@@ -3,8 +3,21 @@
 #include <string.h>
 #include <pthread.h>
 typedef struct readFile{
-
+int line;
+int* list;
 } RF_t;
+
+void* readFileFun(void* args){
+    RF_t* obj = (RF_t*)args;
+    int lineNo = obj->line;
+    int* listVal = obj->line;
+    // Get the row size here
+    //listVal = malloc()
+
+
+
+}
+
 int main(int argc, char * argv[]) {
     if(argc != 7){
         fprintf(stderr,"ERROR: Invalid Arguments\n" );
@@ -21,9 +34,10 @@ int main(int argc, char * argv[]) {
     printf("Hi");
     //Create i threads to read from file1
     pthread_t *tid = malloc(i * sizeof (pthread_t));
+    RF_t *dat1 = malloc(i*sizeof(RF_t));
     for (int l = i; l > 0 ; l--) {
         //Thread arguments
-        if(pthread_create(&tid[i-l],NULL,NULL,NULL) != 0){
+        if(pthread_create(&tid[i-l],NULL,readFileFun,(void*)dat1) != 0){
             fprintf( stderr, "ERROR: Could not create thread\n" );
             exit(EXIT_FAILURE);
         }
