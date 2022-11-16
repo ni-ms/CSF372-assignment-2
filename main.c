@@ -18,6 +18,7 @@ int main(int argc, char * argv[]) {
     char *mat2 = argv[5];
     char *mat3 = argv[6];
 
+    printf("Hi");
     //Create i threads to read from file1
     pthread_t *tid = malloc(i * sizeof (pthread_t));
     for (int l = i; l > 0 ; l--) {

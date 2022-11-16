@@ -17,7 +17,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="" />
+    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +41,10 @@
     <option name="minorVersion" value="2.4" />
   </component>
   <component name="ProjectId" id="2HdKKMZhV9ifO3G8gSMXfsLihiV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -55,7 +61,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OS_assignment_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OS_assignment_2" TARGET_NAME="OS_assignment_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OS_assignment_2" RUN_TARGET_NAME="OS_assignment_2">
+    <configuration name="OS_assignment_2" type="CMakeRunConfiguration" factoryName="Application" editBeforeRun="true" PROGRAM_PARAMS="1 2 3 in1.txt in2.txt out.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OS_assignment_2" TARGET_NAME="OS_assignment_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OS_assignment_2" RUN_TARGET_NAME="OS_assignment_2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -69,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668609455665</updated>
-      <workItem from="1668609457437" duration="116000" />
+      <workItem from="1668609457437" duration="188000" />
     </task>
     <servers />
   </component>
