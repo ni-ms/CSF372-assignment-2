@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
+#include <sys/time.h>
+
+//Concerns:
+//MMAP (fast for more i/o) or read file?
+//
+
+
 typedef struct readFile{
+    //File *fp;
 int line;
 int* list;
 } RF_t;
