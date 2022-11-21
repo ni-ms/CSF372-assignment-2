@@ -9,20 +9,36 @@
 //
 
 
+//Global variables
+FILE *fp1;
+FILE *fp2;
+
+typedef struct arr1{
+    int row;
+    //Integer array/pointer
+    int* list1;
+} array1;
+typedef struct arr2{
+    int col;
+    int* list2;
+} array2;
+
+typedef struct readAndStore{
+    array1 *rVal;
+    array2 *cVal;
+} RAS_t;
+
+/*
 typedef struct readFile{
-    FILE *fp1;
-    FILE *fp2;
     int row, column;
     int* list1;
     int* list2;
-
 } RF_t;
+*/
 
 void* readFileFun(void* args){
 
-    RF_t* obj = (RF_t*)args;
-    int rowNo = obj->row;
-    int columnNo = obj->column;
+
 
 
 
@@ -31,7 +47,7 @@ void* readFileFun(void* args){
 
 
 
-}
+};
 
 int main(int argc, char * argv[]) {
     //Fork and exec
@@ -47,21 +63,64 @@ int main(int argc, char * argv[]) {
     char *mat2 = argv[5];
     char *mat3 = argv[6];
 
-    FILE *fp = fopen(mat1,"r");
+    fp1 = fopen(mat1,"r");
+    fp2 = fopen(mat2,"r");
 
-    printf("Hi");
+    //NUMBER OF THREADS
+    int n = 10;
+
+
     //Create i threads to read from file1
-    pthread_t *tid = malloc(i * sizeof (pthread_t));
-    RF_t *dat1 = malloc(i*sizeof(RF_t));
+    for (int numOfThreads = 1; numOfThreads <= n; ++i) {
+        //Thread id is stored
+    pthread_t *tid = malloc(numOfThreads * sizeof(pthread_t));
 
-    for (int l = i; l > 0; ++l) {
-        dat1[l].row = i-l;
-        dat1[l].fp1 = fp;
-
+    //ALLOCATING THE MEMORY FOR 4D ARRAY
+    //Storing the first array
+    array1 *dat1 = malloc(i*sizeof(array1));
+    for(int temp = 0; temp < i; temp++){
+        dat1[temp].row = temp;
+        dat1[temp].list1 = malloc(j*sizeof(int));
     }
+    /*
+    To access the i,j
+    dat1[i].list1[j];
+    */
+     //Store the second array
+    array2 *dat2 = malloc(k*sizeof (array2));
+        for (int temp = 0; temp < k; ++temp) {
+            dat2[temp].col = temp;
+            dat2[temp].list2 = malloc(j*sizeof(int));
+
+        }
+    //CHECK VALUE
+
+    //Store both array
+    RAS_t **datf_t = malloc(i*sizeof (RAS_t));
+        for (int p = 0; p < i; ++p) {
+            RAS_t *datf = malloc(k*sizeof (RAS_t));
+            datf_t[p] = datf;
+        }
+
+        for (int num1 = 0; num1 < i; ++num1) {
+            for (int num2 = 0; num2 < k; ++num2) {
+                datf_t[num1][num2].rVal = dat1;
+                datf_t[num1][num2].cVal = dat2;
+            }
+        }
+
+
+
+
+
+
+
+
+    //Assign row and column for data
+
     for (int l = i; l > 0 ; l--) {
         //Thread arguments
-        if(pthread_create(&tid[i-l],NULL,readFileFun,(void*)dat1) != 0){
+        if(pthread_create(&tid[i-l],NULL,readFileFun,(void*)datf) != 0){
             fprintf( stderr, "ERROR: Could not create thread\n" );
             exit(EXIT_FAILURE);
         }
@@ -69,6 +128,7 @@ int main(int argc, char * argv[]) {
 
     //Create j threads to read from file 2
     //Create ixj threads to get the input from the previous threads
+    }
 
     return 0;
 }
