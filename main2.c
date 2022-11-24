@@ -48,7 +48,8 @@ int main(int argc, char * argv[]){
     pthread_t *tid = (pthread_t*)malloc(n * sizeof(pthread_t));
     threadInp *obj = malloc(n * sizeof (threadInp));
     for (int i = 0; i < n; ++i) {
-        obj[i].buff = malloc(4096 * sizeof (int));
+        //for rows, number of cols
+        obj[i].buff = malloc(columns* sizeof (int));
 
     }
 
@@ -56,7 +57,7 @@ int main(int argc, char * argv[]){
     for (int i = 0; i < n; ++i) {
         obj[i].length = 25;
         obj[i].start = nextStart;
-        
+
         int temp;
         if(rows%n == 0)
             temp = rows/n;
@@ -67,6 +68,12 @@ int main(int argc, char * argv[]){
 
         if(rows%n == 0)
             obj[i].count = temp;
+        else{
+            if(i != n - 1)
+                obj[i].count = temp;
+            else
+                obj[i].count = rows%n;
+        }
 
 
         obj[i].file_name = "in1.txt";
