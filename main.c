@@ -17,14 +17,14 @@ typedef struct arr1{
     int row;
     //Integer array/pointer
     int* list1;
-} array1;
+} threadInp;
 typedef struct arr2{
     int col;
     int* list2;
 } array2;
 
 typedef struct readAndStore{
-    array1 *rVal;
+    threadInp *rVal;
     array2 *cVal;
 } RAS_t;
 
@@ -76,7 +76,7 @@ int main(int argc, char * argv[]) {
 
         //ALLOCATING THE MEMORY FOR 4D ARRAY
         //Storing the first array
-        array1 *dat1 = (array1*)malloc(i*sizeof(array1));
+        threadInp *dat1 = (threadInp*)malloc(i * sizeof(threadInp));
         for(int temp = 0; temp < i; temp++){
             dat1[temp].row = temp;
             //need to allocate to the list inside the datatype itself
@@ -109,7 +109,7 @@ int main(int argc, char * argv[]) {
 //            }
 //        }
 
-        RAS_t *finalAbs;
+        RAS_t *finalAbs = (RAS_t*) malloc(j * sizeof (RAS_t));
         finalAbs->rVal = dat1;
         finalAbs->cVal = dat2;
 

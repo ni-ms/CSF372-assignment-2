@@ -49,8 +49,8 @@ cmake_ninja_workdir = /home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug/
 
 build cmake_object_order_depends_target_OS_assignment_2: phony || CMakeFiles/OS_assignment_2.dir
 
-build CMakeFiles/OS_assignment_2.dir/main.c.o: C_COMPILER__OS_assignment_2_Debug /home/nik/Desktop/OS_GH/OS-assignment-2/main.c || cmake_object_order_depends_target_OS_assignment_2
-  DEP_FILE = CMakeFiles/OS_assignment_2.dir/main.c.o.d
+build CMakeFiles/OS_assignment_2.dir/main2.c.o: C_COMPILER__OS_assignment_2_Debug /home/nik/Desktop/OS_GH/OS-assignment-2/main2.c || cmake_object_order_depends_target_OS_assignment_2
+  DEP_FILE = CMakeFiles/OS_assignment_2.dir/main2.c.o.d
   FLAGS = -g -std=gnu99
   OBJECT_DIR = CMakeFiles/OS_assignment_2.dir
   OBJECT_FILE_DIR = CMakeFiles/OS_assignment_2.dir
@@ -63,7 +63,7 @@ build CMakeFiles/OS_assignment_2.dir/main.c.o: C_COMPILER__OS_assignment_2_Debug
 #############################################
 # Link the executable OS_assignment_2
 
-build OS_assignment_2: C_EXECUTABLE_LINKER__OS_assignment_2_Debug CMakeFiles/OS_assignment_2.dir/main.c.o
+build OS_assignment_2: C_EXECUTABLE_LINKER__OS_assignment_2_Debug CMakeFiles/OS_assignment_2.dir/main2.c.o
   FLAGS = -g
   LINK_LIBRARIES = -pthread
   OBJECT_DIR = CMakeFiles/OS_assignment_2.dir

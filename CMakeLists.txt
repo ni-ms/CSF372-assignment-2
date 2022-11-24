@@ -3,5 +3,5 @@ project(OS_assignment_2 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(OS_assignment_2 main.c)
+add_executable(OS_assignment_2 main2.c)
 target_link_libraries(OS_assignment_2 -pthread)
