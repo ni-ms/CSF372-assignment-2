@@ -7,7 +7,7 @@
 
 //Global variables
 FILE *fp1, *fp2;
-int i,j,k;
+int iVal,jVal,kVal;
 char* mat1, *mat2, *mat3;
 int *arr1, *arr2;
 int *isVisited1, *isVisited2;
@@ -21,6 +21,7 @@ typedef struct files{
     FILE* fp1;
     FILE* fp2;
     int*off1,*off2;
+    int toRead;
 } thread_inp;
 
 
@@ -62,37 +63,61 @@ void getOffset(FILE *fp, int offsetarr[]){
 
 }
 
-
-
 void* threadfun(void* args){
     thread_inp *inp = (thread_inp*) args;
     FILE *fp1 = inp->fp1;
     FILE *fp2 = inp->fp2;
     int* off1 = inp->off1, *off2 = inp->off2;
+    int toreadVal = inp->toRead;
 
 
-    //Read from file 1
+
+   /* //Read from file 1
     int p = 0;
-    for (int i = 0; i < line1; ++i) {}
 
-        fseek(fp1, off1[p] - p - 1, SEEK_SET);
-        char *line = NULL;
-        size_t len = 0;
-        ssize_t read;
-        read = getline(&line, &len, fp1);
-        printf("Retrieved line of length %zu :\n", read);
-        printf("%s", line);
-        free(line);
+    int toRead = iVal / maxThreads;
+
+
+    for (int i = 0; i < line1; ++i) {
+        if(isVisited1[i] == 0){
+
+            for (int num = 0; num <  toRead; ++num) {
+                isVisited1[num] = 1;
+            }
+        }
+    }*/
+
+
+    fseek(fp1, off1[toreadVal] - toreadVal - 1, SEEK_SET);
+    //line to store the values
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    read = getline(&line, &len, fp1);
+    printf("threadno: %d: %s", (int)toreadVal, line);
+
+
+
+   int pos = 0;
+    char *token = strtok(line, " ");
+    while(token != NULL){
+        arr1[pos] = atoi(token);
+        token = strtok(NULL, " ");
+        pos++;
+    }
+    free(token);
+
+    free(line);
 
 
 
 
 /*
    //Read from file 1
-    for (int i = 0; i < line1; ++i) {
-        if(isVisited1[i] == 0){
-            isVisited1[i] = 1;
-            int temp = i;
+    for (int iVal = 0; iVal < line1; ++iVal) {
+        if(isVisited1[iVal] == 0){
+            isVisited1[iVal] = 1;
+            int temp = iVal;
             char values[1000];
             while(temp != 0){
                 off1 += offsetarray1[temp-1];
@@ -106,11 +131,11 @@ void* threadfun(void* args){
     }
 
     //read from file 2
-    *//*for (int k = 0; k < line2; ++k) {
-        if(isVisited2[k] == 0){
+    *//*for (int kVal = 0; kVal < line2; ++kVal) {
+        if(isVisited2[kVal] == 0){
 
-            isVisited2[k] = 1;
-            int temp = k;
+            isVisited2[kVal] = 1;
+            int temp = kVal;
             char values[1000];
             while(temp != 0){
                 fseek(fp1, off1, SEEK_SET);
@@ -129,20 +154,20 @@ int main(int argc, char * argv[]){
     //Fork and exec
     if(argc != 7){
         fprintf(stderr,"ERROR: Invalid Arguments\n" );
-        fprintf(stderr,"USAGE: ./group12_assignment2.out i j k in1.txt in2.txt out.txt\n" );
+        fprintf(stderr,"USAGE: ./group12_assignment2.out iVal jVal kVal in1.txt in2.txt out.txt\n" );
         return EXIT_FAILURE;
     }
-    i = atoi(argv[1]);
-    j = atoi(argv[2]);
-    k = atoi(argv[3]);
+    iVal = atoi(argv[1]);
+    jVal = atoi(argv[2]);
+    kVal = atoi(argv[3]);
     mat1 = argv[4];
     mat2 = argv[5];
     mat3 = argv[6];
 
     //Allocate memory for array1 and array2
 
-    arr1 = malloc((i*j)*sizeof (int));
-    arr2 = malloc((j*k)*sizeof (int));
+    arr1 = malloc((iVal * jVal) * sizeof (int));
+    arr2 = malloc((jVal * kVal) * sizeof (int));
 
 
     //create file pointers
@@ -176,10 +201,7 @@ int main(int argc, char * argv[]){
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
 
-
-
-    maxThreads = 10;
-
+    maxThreads = 19;
 
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
     for (int i = 0; i < maxThreads; ++i) {
@@ -187,11 +209,12 @@ int main(int argc, char * argv[]){
         inp[i].fp2 = fp2;
         inp[i].off1 = offsetarray1;
         inp[i].off2 = offsetarray2;
+        inp[i].toRead = i;
     }
     pthread_t *thread_create = malloc(maxThreads* sizeof(pthread_t));
 
     for (int i = 0; i < maxThreads; ++i) {
-        pthread_create(&thread_create[i], NULL, threadfun, (void*)inp);
+        pthread_create(&thread_create[i], NULL, threadfun, (void*)(inp + i));
         pthread_join(thread_create[i], NULL);
     }
 
@@ -213,16 +236,16 @@ int main(int argc, char * argv[]){
     //Thread id is stored
     pthread_t *tid = (pthread_t*)malloc(n * sizeof(pthread_t));
     threadInp *obj = malloc(n * sizeof (threadInp));
-    for (int i = 0; i < n; ++i) {
+    for (int iVal = 0; iVal < n; ++iVal) {
         //for rows, number of cols
-        obj[i].buff = malloc(columns* sizeof (int));
+        obj[iVal].buff = malloc(columns* sizeof (int));
 
     }
 
     int nextStart = 0;
-    for (int i = 0; i < n; ++i) {
-        obj[i].length = 25;
-        obj[i].start = nextStart;
+    for (int iVal = 0; iVal < n; ++iVal) {
+        obj[iVal].length = 25;
+        obj[iVal].start = nextStart;
 
         int temp;
         if(rows%n == 0)
@@ -233,25 +256,25 @@ int main(int argc, char * argv[]){
         nextStart += temp;
 
         if(rows%n == 0)
-            obj[i].count = temp;
+            obj[iVal].count = temp;
         else{
-            if(i != n - 1)
-                obj[i].count = temp;
+            if(iVal != n - 1)
+                obj[iVal].count = temp;
             else
-                obj[i].count = rows%n;
+                obj[iVal].count = rows%n;
         }
 
 
-        obj[i].file_name = "in1.txt";
-        pthread_create(&tid[i], NULL, threadfun,(void*)obj );
-        pthread_join(&tid[i], NULL);
+        obj[iVal].file_name = "in1.txt";
+        pthread_create(&tid[iVal], NULL, threadfun,(void*)obj );
+        pthread_join(&tid[iVal], NULL);
     }
 
-    for (int i = 0; i < rows; i++) {
+    for (int iVal = 0; iVal < rows; iVal++) {
 
-        for (int j = 0; j < columns; j++)
+        for (int jVal = 0; jVal < columns; jVal++)
 
-            //printf("%d ", [i * columns + j]);
+            //printf("%d ", [iVal * columns + jVal]);
 
         printf("\n");
 

@@ -76,7 +76,7 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="OS_assignment_2" type="CMakeRunConfiguration" factoryName="Application" editBeforeRun="true" PROGRAM_PARAMS="1 2 3 in1.txt in2.txt out.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OS_assignment_2" TARGET_NAME="OS_assignment_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OS_assignment_2" RUN_TARGET_NAME="OS_assignment_2">
+    <configuration name="OS_assignment_2" type="CMakeRunConfiguration" factoryName="Application" editBeforeRun="true" PROGRAM_PARAMS="20 10 30 in1.txt in2.txt out.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OS_assignment_2" TARGET_NAME="OS_assignment_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OS_assignment_2" RUN_TARGET_NAME="OS_assignment_2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -105,7 +105,7 @@
       <workItem from="1669286025910" duration="2505000" />
       <workItem from="1669290713680" duration="2000" />
       <workItem from="1669626312228" duration="193000" />
-      <workItem from="1669626514655" duration="11270000" />
+      <workItem from="1669626514655" duration="15550000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
