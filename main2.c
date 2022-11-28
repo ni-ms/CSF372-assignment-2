@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
-#include <unistd.h>
-#include <sys/times.h>
 #include <time.h>
 #include <stdint.h>
-#include <errno.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
 
 
 //Global variables
@@ -195,6 +194,20 @@ int main(int argc, char * argv[]){
     mat2 = argv[5];
     mat3 = argv[6];
 
+
+
+    key_t key = ftok("shmfile",65);
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+    int *shmseg = (int*) shmat(shmid,(void*)0,0);
+    printf("Write Data : ");
+    for (int i = 0; i < 1024; ++i) {
+        shmseg[i] = arr1[i];
+    }
+    printf("Data written in memory:\n");
+    for (int i = 0; i < 1024; ++i) {
+        printf("%d ", shmseg[i]);
+    }
+    shmdt(shmseg);
     //Allocate memory for array1 and array2
 
     //arr1 = malloc((iVal * jVal) * sizeof (int));
