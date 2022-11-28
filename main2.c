@@ -5,14 +5,38 @@
 #include <sys/time.h>
 #include <fcntl.h>
 
-FILE *fp;
+
+//Global variables
+FILE *fp1, *fp2;
+int i,j,k;
+char* mat1, *mat2, *mat3;
+int *arr1, *arr2;
+int *isVisited1, *isVisited2;
+int line1 = 0, line2 = 0;
+FILE *fp3;
+
+void getLineIndex(FILE *fp, int var){
+    if(fp == NULL){
+        fprintf(stderr, "ERROR: File not found\n");
+        exit(EXIT_FAILURE);
+    }
+    char c;
+    for (c = getc(fp); c != EOF ; c = getc(fp)) {
+        if (c == '\n') {
+         var++;
+        }
+    }
+    printf("Number of lines in file: %d\n", var);
+}
+
+
 typedef struct fBuffer{
     int length;
     int start, count;
-    char** buff;
-    char* file_name;
+
 
 } threadInp;
+/*
 void* threadfun(void* args){
 threadInp *obj1 = (threadInp*)args;
 FILE* fp = fopen(obj1->file_name, "r");
@@ -23,7 +47,7 @@ FILE* fp = fopen(obj1->file_name, "r");
 
 
 
-}
+}*/
 
 int main(int argc, char * argv[]){
     //Fork and exec
@@ -32,15 +56,44 @@ int main(int argc, char * argv[]){
         fprintf(stderr,"USAGE: ./group12_assignment2.out i j k in1.txt in2.txt out.txt\n" );
         return EXIT_FAILURE;
     }
-    int i = atoi(argv[1]);
-    int j = atoi(argv[2]);
-    int k = atoi(argv[3]);
-    char *mat1 = argv[4];
-    char *mat2 = argv[5];
-    char *mat3 = argv[6];
+    i = atoi(argv[1]);
+    j = atoi(argv[2]);
+    k = atoi(argv[3]);
+    mat1 = argv[4];
+    mat2 = argv[5];
+    mat3 = argv[6];
+
+    //Allocate memory for array1 and array2
+
+    arr1 = malloc((i*j)*sizeof (int));
+    arr2 = malloc((j*k)*sizeof (int));
 
 
-    //NUMBER OF THREADS
+    //create file pointers
+    fp1 = fopen(mat1, "r");
+    fp2 = fopen(mat2, "r");
+
+
+
+    getLineIndex(fp1, line1);
+    getLineIndex(fp2, line2);
+
+
+    //Allocate memory for isvisited
+    isVisited1 = malloc(line1*sizeof(int));
+    isVisited2 = malloc(line2*sizeof(int));
+
+
+    //Close files
+    fclose(fp1);
+    fclose(fp2);
+
+    //free pointer
+    free(isVisited1);
+    free(isVisited2);
+
+
+   /* //NUMBER OF THREADS
     int n = 10;
     int rows = 25, columns = 25;
     int *acc = malloc((rows * columns) * sizeof(int));
@@ -90,6 +143,6 @@ int main(int argc, char * argv[]){
         printf("\n");
 
     }
-    //free(arr);
+    //free(arr);*/
 }
 
