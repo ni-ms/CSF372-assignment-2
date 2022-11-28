@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/nik/Desktop/OS_GH/OS-assignment-2/cmake-build-debug",
-		"source" : "/home/nik/Desktop/OS_GH/OS-assignment-2"
+		"build" : "/home/nikms/Desktop/GitRepos/OS-assignment-2/cmake-build-debug",
+		"source" : "/home/nikms/Desktop/GitRepos/OS-assignment-2"
 	},
 	"version" : 
 	{
