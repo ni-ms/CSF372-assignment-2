@@ -14,7 +14,7 @@ int iVal,jVal,kVal;
 char* mat1, *mat2, *mat3;
 //int *arr1;
 int arr1[1000];
-int *arr2;
+int arr2[1000];
 int *isVisited1, *isVisited2;
 int *offsetarray1, *offsetarray2;
 int line1 = 0, line2 = 0;
@@ -61,7 +61,7 @@ void getOffset(FILE *fp, int offsetarr[]){
         if (c == '\n') {
             temp++;
             offsetarr[var] = temp;
-
+            printf("Offset of line %d: %d\n", var, offsetarr[var]);
             var++;
 
         }
@@ -70,6 +70,7 @@ void getOffset(FILE *fp, int offsetarr[]){
 }
 
 int arrIndex = 0;
+int arrIndex2 = 0;
 
 //TODO
 //Make code run for threads less than number of rows
@@ -82,20 +83,21 @@ void* threadfun(void* args){
     FILE *fp2 = inp->fp2;
     int* off1 = inp->off1, *off2 = inp->off2;
     int toreadVal = inp->readStart;
+    int toreadVal2 = inp->readStart;
 
 
    /* //Read from file 1
     int p = 0;
     int readStart = iVal / maxThreads;
-
     for (int i = 0; i < line1; ++i) {
         if(isVisited1[i] == 0){
-
             for (int num = 0; num <  readStart; ++num) {
                 isVisited1[num] = 1;
             }
         }
     }*/
+
+   //READ FROM FILE ONE
 
     fseek(fp1, off1[toreadVal] - toreadVal - 1, SEEK_SET);
     //line to store the values
@@ -131,12 +133,46 @@ void* threadfun(void* args){
         arrIndex++;
     }
 
+
+    //READ FROM FILE TWO
+    fseek(fp2, off1[toreadVal2] - toreadVal2 - 1, SEEK_SET);
+    //line to store the values
+    char *line2 = NULL;
+    size_t len2 = 0;
+    ssize_t read2;
+    //Measure time
+
+    //TO MEASURE TIME
+
+    uint64_t elapsed2;
+    struct timespec endT2, startT2;
+    int ret2 = clock_gettime(CLOCK_MONOTONIC, &startT2);
+    if(ret2 == -1){
+        fprintf(stderr, "ERROR: Clock gettime failed\n");
+        exit(EXIT_FAILURE);
+    }
+    clock_gettime(CLOCK_MONOTONIC, &startT2);
+    read = getline(&line2, &len2, fp2);
+    clock_gettime(CLOCK_MONOTONIC, &endT2);
+    elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
+    printf("Time taken to read line: %lu\n", elapsed2);
+    printf("threadno: %d: %s", (int)toreadVal2, line2);
+
+
+
+//FIX THIS
+    char *token2 = strtok(line2, " ");
+    while(token2 != NULL){
+        arr2[arrIndex2] = atoi(token2);
+        printf("arr2[%d]: %d\n", arrIndex2, arr2[arrIndex2]);
+        token2 = strtok(NULL, " ");
+        arrIndex2++;
+    }
+
+
+
     /*free(token);
-
     free(line);*/
-
-
-
 
 /*
    //Read from file 1
@@ -174,11 +210,12 @@ void* threadfun(void* args){
         }
     }*/
 
-
     pthread_exit(NULL);
 
 
 }
+
+//MAIN FUNCTIOn
 
 int main(int argc, char * argv[]){
     //Fork and exec
@@ -195,23 +232,10 @@ int main(int argc, char * argv[]){
     mat3 = argv[6];
 
 
-
-    key_t key = ftok("shmfile",65);
-    int shmid = shmget(key,1024,0666|IPC_CREAT);
-    int *shmseg = (int*) shmat(shmid,(void*)0,0);
-    printf("Write Data : ");
-    for (int i = 0; i < 1024; ++i) {
-        shmseg[i] = arr1[i];
-    }
-    printf("Data written in memory:\n");
-    for (int i = 0; i < 1024; ++i) {
-        printf("%d ", shmseg[i]);
-    }
-    shmdt(shmseg);
     //Allocate memory for array1 and array2
 
     //arr1 = malloc((iVal * jVal) * sizeof (int));
-    arr2 = malloc((jVal * kVal) * sizeof (int));
+    //arr2 = malloc((jVal * kVal) * sizeof (int));
 
 
     //create file pointers
@@ -223,6 +247,7 @@ int main(int argc, char * argv[]){
 
     //transpose second matrix
     getLineIndex(fp1, &line1);
+
     getLineIndex(fp2, &line2);
 
 
@@ -235,11 +260,12 @@ int main(int argc, char * argv[]){
     for (int p = 0; p < line1; ++p) {
         isVisited1[p] = 0;
         offsetarray1[p] = 0;
-    }
-    for (int p = 0; p < line2; ++p) {
-        isVisited2[p] = 0;
         offsetarray2[p] = 0;
     }
+   /* for (int p = 0; p < line2; ++p) {
+        isVisited2[p] = 0;
+        offsetarray2[p] = 0;
+    }*/
 
 
     getOffset(fp1, offsetarray1);
@@ -262,6 +288,18 @@ int main(int argc, char * argv[]){
         pthread_join(thread_create[i], NULL);
     }
 
+    key_t key = ftok("shmfile",65);
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+    int *shmseg = (int*) shmat(shmid,(void*)0,0);
+    printf("Write Data : ");
+    for (int i = 0; i < 1024; ++i) {
+        shmseg[i] = arr1[i];
+    }
+    printf("Data written in memory:\n");
+    for (int i = 0; i < 1024; ++i) {
+        printf("%d ", shmseg[i]);
+    }
+    shmdt(shmseg);
 
 
 /*    printf("Value in array:");
@@ -279,7 +317,7 @@ int main(int argc, char * argv[]){
     fclose(fp2);
 //free memory
     //free(arr1);
-    free(arr2);
+
     free(isVisited1);
     free(isVisited2);
     free(offsetarray1);
@@ -339,6 +377,8 @@ int main(int argc, char * argv[]){
         printf("\n");
 
     }
-    //free(arr);*/
+
+
+    */
 }
 

@@ -7,6 +7,6 @@ def fileopen():
    # fw.writelines(array)
    array = np.loadtxt("in2.txt", dtype='i', delimiter = ' ')
    array = array.transpose()
-   np.savetxt('inp2.txt', array, fmt= '%i')
+   np.savetxt('in2.txt', array, fmt= '%i')
    # print(array, sep = '\n')
 fileopen()
