@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="OS_assignment_2" type="CMakeRunConfiguration" factoryName="Application" editBeforeRun="true" PROGRAM_PARAMS="20 10 30 in1.txt in2.txt out.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OS_assignment_2" TARGET_NAME="OS_assignment_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OS_assignment_2" RUN_TARGET_NAME="OS_assignment_2">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

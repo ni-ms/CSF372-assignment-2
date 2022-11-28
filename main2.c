@@ -3,13 +3,19 @@
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <sys/times.h>
+#include <time.h>
+#include <stdint.h>
+#include <errno.h>
 
 
 //Global variables
 FILE *fp1, *fp2;
 int iVal,jVal,kVal;
 char* mat1, *mat2, *mat3;
-int *arr1, *arr2;
+//int *arr1;
+int arr1[1000];
+int *arr2;
 int *isVisited1, *isVisited2;
 int *offsetarray1, *offsetarray2;
 int line1 = 0, line2 = 0;
@@ -17,11 +23,13 @@ FILE *fp3;
 int maxThreads;
 
 
+
 typedef struct files{
     FILE* fp1;
     FILE* fp2;
     int*off1,*off2;
-    int toRead;
+    int readStart, readEnd;
+
 } thread_inp;
 
 
@@ -60,54 +68,73 @@ void getOffset(FILE *fp, int offsetarr[]){
         }
     }
 
-
 }
+
+int arrIndex = 0;
+
+//TODO
+//Make code run for threads less than number of rows
+//make sure data is stored in order
+
 
 void* threadfun(void* args){
     thread_inp *inp = (thread_inp*) args;
     FILE *fp1 = inp->fp1;
     FILE *fp2 = inp->fp2;
     int* off1 = inp->off1, *off2 = inp->off2;
-    int toreadVal = inp->toRead;
-
+    int toreadVal = inp->readStart;
 
 
    /* //Read from file 1
     int p = 0;
-
-    int toRead = iVal / maxThreads;
-
+    int readStart = iVal / maxThreads;
 
     for (int i = 0; i < line1; ++i) {
         if(isVisited1[i] == 0){
 
-            for (int num = 0; num <  toRead; ++num) {
+            for (int num = 0; num <  readStart; ++num) {
                 isVisited1[num] = 1;
             }
         }
     }*/
-
 
     fseek(fp1, off1[toreadVal] - toreadVal - 1, SEEK_SET);
     //line to store the values
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
+    //Measure time
+
+    //TO MEASURE TIME
+
+    uint64_t elapsed;
+    struct timespec endT, startT;
+    int ret = clock_gettime(CLOCK_MONOTONIC, &startT);
+    if(ret == -1){
+        fprintf(stderr, "ERROR: Clock gettime failed\n");
+        exit(EXIT_FAILURE);
+    }
+    clock_gettime(CLOCK_MONOTONIC, &startT);
     read = getline(&line, &len, fp1);
+    clock_gettime(CLOCK_MONOTONIC, &endT);
+    elapsed = (endT.tv_sec - startT.tv_sec) * 1000000000 + (endT.tv_nsec - startT.tv_nsec);
+    printf("Time taken to read line: %lu\n", elapsed);
     printf("threadno: %d: %s", (int)toreadVal, line);
 
 
 
-   int pos = 0;
+//FIX THIS
     char *token = strtok(line, " ");
     while(token != NULL){
-        arr1[pos] = atoi(token);
+        arr1[arrIndex] = atoi(token);
+        printf("arr1[%d]: %d\n", arrIndex, arr1[arrIndex]);
         token = strtok(NULL, " ");
-        pos++;
+        arrIndex++;
     }
-    free(token);
 
-    free(line);
+    /*free(token);
+
+    free(line);*/
 
 
 
@@ -148,6 +175,10 @@ void* threadfun(void* args){
         }
     }*/
 
+
+    pthread_exit(NULL);
+
+
 }
 
 int main(int argc, char * argv[]){
@@ -166,7 +197,7 @@ int main(int argc, char * argv[]){
 
     //Allocate memory for array1 and array2
 
-    arr1 = malloc((iVal * jVal) * sizeof (int));
+    //arr1 = malloc((iVal * jVal) * sizeof (int));
     arr2 = malloc((jVal * kVal) * sizeof (int));
 
 
@@ -209,7 +240,7 @@ int main(int argc, char * argv[]){
         inp[i].fp2 = fp2;
         inp[i].off1 = offsetarray1;
         inp[i].off2 = offsetarray2;
-        inp[i].toRead = i;
+        inp[i].readStart = i;
     }
     pthread_t *thread_create = malloc(maxThreads* sizeof(pthread_t));
 
@@ -220,13 +251,29 @@ int main(int argc, char * argv[]){
 
 
 
+/*    printf("Value in array:");
+    for(int i = 0; i < iVal; i++){
+        for(int j = 0; j < jVal; j++){
+            printf("%d ", arr1[i * jVal + j]);
+        }
+        printf("\n");
+    }*/
+
     //Close files
+
+
     fclose(fp1);
     fclose(fp2);
-
-    //free pointer
+//free memory
+    //free(arr1);
+    free(arr2);
     free(isVisited1);
     free(isVisited2);
+    free(offsetarray1);
+    free(offsetarray2);
+    free(inp);
+    free(thread_create);
+    return 0;
 
 
    /* //NUMBER OF THREADS
