@@ -49,7 +49,7 @@ void* multiplyFun(void* args) {
 
 
     //TO SEE IF ARRAY IS BEING READ
-    FILE *fpa = fopen("z1.txt", "w");
+  /*  FILE *fpa = fopen("z1.txt", "w");
     fprintf(fpa,"Array 1 is: \n");
     for (int i = 0; i < iVal*jVal; i++) {
         fprintf(fpa,"%d ", arr1[i]);
@@ -63,11 +63,9 @@ void* multiplyFun(void* args) {
        if(i%jVal == jVal-1){
             fprintf(fpa,"\n");
         }
-    }
+    }*/
 
-    FILE *fp = fopen("z2.txt", "w");
-
-
+  FILE *fp = fopen("z2.txt", "w");
     //ival = 20, jvl = 50, kval = 20
     for(int p = 0; p < iVal; p++){
         for (int q = 0; q < kVal - 1; ++q) {
