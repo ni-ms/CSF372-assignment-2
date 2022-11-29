@@ -41,10 +41,10 @@ void writeToFile(FILE *fp, int *arr, int size) {
 }
 
 
-void* multiplyFun(void* args){
+void* multiplyFun(void* args) {
     //get row and column
     //multiply
-    thread_args *t = (thread_args*) args;
+    thread_args *t = (thread_args *) args;
     int rowS = t->rowS;
     int columnS = t->columnS;
     int rowE = t->rowE;
@@ -58,18 +58,45 @@ void* multiplyFun(void* args){
         }
     }*/
 
-    for (i = rowS; i < rowE; i++) {
-        for (j = columnS; j < columnE; j++) {
-            //CHECK IF PRODUCT IS
-            for (k = 0; k < kVal; k++) {
 
-                ans[i][j] += arr1[i * kVal + k] * arr2[k * jVal + j];
+    //calculate product
+    if(rowS < iVal && rowE < iVal && columnS < jVal && columnE < jVal){
+        for (i = rowS; i < rowE; i++) {
+            for (j = columnS; j < columnE; j++) {
+               printf("Element being calculated is: %d %d\n", i, j);
+                    /*ans[i][j] += arr1[i*jVal + k] * arr2[j*jVal + k];*/
+                    int temp = 0;
+                    for(int i = 0; i < jVal; i++){
+                        temp += arr1[i*jVal + k] * arr2[j*jVal + k];
+                    }
+                    ans[i][j] = temp;
+
+
+                printf("Row values are:\n");
+                    for(int l = 0; l < jVal; l++){
+
+                        printf("%d ", arr1[i*jVal + l]);
+
+                    }
+                printf("Column values are:\n");
+                for (int i = 0; i < jVal; ++i) {
+
+                    printf("%d ",arr2[j*jVal + i] );
+                }
+                    printf("\n");
+
+
             }
         }
     }
-    pthread_exit(NULL);
-    return NULL;
+    else{
+
+    }
+
+        pthread_exit(NULL);
+        return NULL;
 }
+
 int main(int argc, char * argv[]){
    if(argc != 7){
         fprintf(stderr,"Usage: ./a.out <i> <j> <k> in1.txt in2.txt out.txt");
@@ -103,7 +130,13 @@ int main(int argc, char * argv[]){
     inp[i].rowE = prev + temp;
     inp[i].columnE = prev + temp;
     prev = prev + temp + 1;
+/*
+
+        printf("Thread %d: %d %d %d %d\n", i, inp[i].rowS, inp[i].columnS, inp[i].rowE, inp[i].columnE);
+*/
+
    }
+
 
     //Create threads
     pthread_t *threads = malloc(maxThreads * sizeof(pthread_t));
@@ -113,7 +146,13 @@ int main(int argc, char * argv[]){
         pthread_join(threads[i], NULL);
     }
 
-
+    printf("Output Matrix:");
+    for (int i = 0; i < iVal; i++) {
+        for (int j = 0; j < jVal; j++) {
+            printf("%d ", ans[i][j]);
+        }
+        printf("\n");
+    }
 
  /*   printf("For array1:\n");
     for (int i = 0; i < 1000; ++i) {
