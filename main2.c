@@ -15,15 +15,17 @@
 
 #define MAX_SIZE 1000000
 #define MEM_SIZE 4096
+#define ARR_SIZE 1000
 
 
 //Global variables
 FILE *fp1, *fp2;
 int iVal,jVal,kVal;
 char* mat1, *mat2, *mat3;
-//int *arr1;
-int arr1[1000];
-int arr2[1000];
+int *arr1;
+int *arr2;
+//int arr1[ARR_SIZE];
+//int arr2[ARR_SIZE];
 int isVisited1[MAX_SIZE], isVisited2[MAX_SIZE];
 int *offsetarray1, *offsetarray2;
 int line1size = 0, line2size = 0;
@@ -32,7 +34,7 @@ int maxThreads;
 
 typedef struct files{
     int readStart1, readEnd1;
-    int readStart2, readEnd2;
+
 } thread_inp;
 
 
@@ -65,7 +67,7 @@ void getOffset(FILE *fp, int offsetarr[]){
         if (c == '\n') {
             temp++;
             offsetarr[var] = temp;
-            printf("Offset of line %d: %d\n", var, offsetarr[var]);
+         /*   printf("Offset of line %d: %d\n", var, offsetarr[var]);*/
             var++;
 
         }
@@ -86,7 +88,7 @@ void* threadfun(void* args){
     /*int* off1 = inp->off1, *off2 = inp->off2;*/
     int toreadS = inp->readStart1;
     int toreadE = inp->readEnd1;
-/*    printf("Thread %d: Start: %d, End: %d\n", (int)pthread_self(), toreadS, toreadE);*/
+    printf("Thread %d: Start: %d, End: %d\n", (int)pthread_self(), toreadS, toreadE);
 
 
    /* //Read from file 1
@@ -129,71 +131,75 @@ void* threadfun(void* args){
             token = strtok(NULL, " ");
         }*/
 
-
-      //FOR FILE ONE
-        fseek(fp1, offsetarray1[i] - i + 1, SEEK_SET);
-        uint64_t elapsed;
-        struct timespec endT, startT;
-        int ret = clock_gettime(CLOCK_MONOTONIC, &startT);
-        if(ret == -1){
-            fprintf(stderr, "ERROR: Clock gettime failed\n");
-            exit(EXIT_FAILURE);
-        }
-        clock_gettime(CLOCK_MONOTONIC, &startT);
-        read = getline(&line, &len, fp1);
-        clock_gettime(CLOCK_MONOTONIC, &endT);
-        elapsed = (endT.tv_sec - startT.tv_sec) * 1000000000 + (endT.tv_nsec - startT.tv_nsec);
+        if(isVisited1[i] == 0 && i < line1size){
+            //FOR FILE ONE
+            fseek(fp1, offsetarray1[i] - i - 1, SEEK_SET);
+            uint64_t elapsed;
+            struct timespec endT, startT;
+            int ret = clock_gettime(CLOCK_MONOTONIC, &startT);
+            if(ret == -1){
+                fprintf(stderr, "ERROR: Clock gettime failed\n");
+                exit(EXIT_FAILURE);
+            }
+            clock_gettime(CLOCK_MONOTONIC, &startT);
+            read = getline(&line, &len, fp1);
+            clock_gettime(CLOCK_MONOTONIC, &endT);
+            elapsed = (endT.tv_sec - startT.tv_sec) * 1000000000 + (endT.tv_nsec - startT.tv_nsec);
 /*        printf("Time taken to read line: %lu\n", elapsed);
         printf("threadno: %d: %s", (int)toreadS, line);*/
 
-        //Process line and store in array
-        char *token = strtok(line, " ");
-        isVisited1[i] = 1;
-        int temp = 0;
-        while(token != NULL){
-            arr1[i*jVal+ temp] = atoi(token);
-            /*printf("threadno: %d: %d\n", (int)toreadS, arr1[i*jVal+ temp]);*/
-            token = strtok(NULL, " ");
-            temp++;
-        }
-        for (int i = 0; i < line1size; ++i) {
-            printf("IsVisited1: %d\n", isVisited1[i]);
-        }
+            //Process line and store in array
+            char *token = strtok(line, " ");
+            isVisited1[i] = 1;
+            int temp = 0;
+            while(token != NULL){
+                arr1[i*jVal+ temp] = atoi(token);
+                /*printf("threadno: %d: %d\n", (int)toreadS, arr1[i*jVal+ temp]);*/
+                token = strtok(NULL, " ");
+                temp++;
+            }
+          /*  for (int i = 0; i < line1size; ++i) {
+                printf("IsVisited1: %d\n", isVisited1[i]);
+            }*/
 
-        //reset line
-        line = NULL;
+            //reset line
+            line = NULL;
 
-
-        //FOR FILE TWO
-        fseek(fp2, offsetarray2[i] - i + 1, SEEK_SET);
-        uint64_t elapsed2;
-        struct timespec endT2, startT2;
-        int ret2 = clock_gettime(CLOCK_MONOTONIC, &startT2);
-        if(ret2 == -1){
-            fprintf(stderr, "ERROR: Clock gettime failed\n");
-            exit(EXIT_FAILURE);
-        }
-        clock_gettime(CLOCK_MONOTONIC, &startT2);
-        read = getline(&line2, &len2, fp2);
-        clock_gettime(CLOCK_MONOTONIC, &endT2);
-        elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
-        printf("Time taken to read line: %lu\n", elapsed2);
-        printf("threadno: %d: %s", (int)toreadE, line2);
-
-        //FIX THIS
-        temp = 0;
-        isVisited2[i] = 1;
-        char *token2 = strtok(line2, " ");
-        while(token2 != NULL){
-            arr2[i*jVal + temp] = atoi(token2);
-           /* printf("arr2[%d]: %d\n", i*jVal + temp, arr2[i*jVal + temp]);*/
-            token2 = strtok(NULL, " ");
-            temp++;
         }
 
+        if(isVisited2[i] == 0 && i < line1size){
+            //FOR FILE TWO
+            fseek(fp2, offsetarray2[i] - i - 1, SEEK_SET);
+            uint64_t elapsed2;
+            struct timespec endT2, startT2;
+            int ret2 = clock_gettime(CLOCK_MONOTONIC, &startT2);
+            if(ret2 == -1){
+                fprintf(stderr, "ERROR: Clock gettime failed\n");
+                exit(EXIT_FAILURE);
+            }
+            clock_gettime(CLOCK_MONOTONIC, &startT2);
+            read = getline(&line2, &len2, fp2);
+            clock_gettime(CLOCK_MONOTONIC, &endT2);
+            elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
+            printf("Time taken to read line: %lu\n", elapsed2);
 
-        //Reset line2
-        line2 = NULL;
+
+            //FIX THIS
+            int temp = 0;
+            isVisited2[i] = 1;
+            char *token2 = strtok(line2, " ");
+            while(token2 != NULL){
+                arr2[i*jVal + temp] = atoi(token2);
+                /* printf("arr2[%d]: %d\n", i*jVal + temp, arr2[i*jVal + temp]);*/
+                token2 = strtok(NULL, " ");
+                temp++;
+            }
+
+
+            //Reset line2
+            line2 = NULL;
+        }
+
 
 
     }
@@ -325,27 +331,40 @@ int main(int argc, char * argv[]){
     pthread_t *thread_create = malloc(maxThreads* sizeof(pthread_t));
 
 
-    //create shared memory
-    key_t key = ftok("shmfile",65);
-    int shmid = shmget(key,MEM_SIZE,0666|IPC_CREAT);
-    int *shmseg = (int*) shmat(shmid,(void*)0,0);
+    //create shared memory for array 1
+    key_t key = ftok("./shm/shmfile1.txt",65);
+    int shmid = shmget(key,ARR_SIZE,0666|IPC_CREAT);
+    arr1 = (int*) shmat(shmid,(void*)0,0);
+
+    //create shared memory for array 2
+    key_t key1 = ftok("./shm/shmfile2.txt", 65);
+    printf("keys: %d %d\n", key, key1);
+    int shmid1 = shmget(key1, ARR_SIZE, 0666|IPC_CREAT);
+    arr2 = (int*) shmat(shmid1, (void*)0, 0);
+
+
 
     for (int i = 0; i < maxThreads; ++i) {
-
         pthread_create(&thread_create[i], NULL, threadfun, (void*)(inp + i));
         pthread_join(thread_create[i], NULL);
     }
 
 
     printf("Write Data : ");
-    for (int i = 0; i < 1024; ++i) {
+    /*for (int i = 0; i < ARR_SIZE; ++i) {
         shmseg[i] = arr1[i];
-    }
+    }*/
     printf("Data written in memory:\n");
-    for (int i = 0; i < 1024; ++i) {
-        printf("%d ", shmseg[i]);
+    for (int i = 0; i < ARR_SIZE; ++i) {
+        /*printf("%d ", shmseg[i]);*/
+        printf("%d ", arr1[i]);
     }
-    shmdt(shmseg);
+    printf("\n");
+    for (int i = 0; i < ARR_SIZE; ++i) {
+        printf("%d ", arr2[i]);
+    }
+    shmdt(arr1);
+    shmdt(arr2);
 
 
 /*    printf("Value in array:");

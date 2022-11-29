@@ -18,22 +18,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
-      <change afterPath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main4.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inp1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inp2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/in1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/in2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inp2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main2.c" beforeDir="false" afterPath="$PROJECT_DIR$/main2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main4.c" beforeDir="false" afterPath="$PROJECT_DIR$/main4.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp3.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/trans1.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trans2.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans2.py" afterDir="false" />
     </list>
@@ -88,6 +86,27 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.OS_assignment_2">
+    <configuration name="MatrixGen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OS-assignment-2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Assignment2-utilities" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="trans1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -155,6 +174,7 @@
       <list>
         <item itemvalue="Python.trans2" />
         <item itemvalue="Python.trans1" />
+        <item itemvalue="Python.MatrixGen" />
         <item itemvalue="Python.transscript" />
       </list>
     </recent_temporary>
@@ -178,7 +198,7 @@
       <workItem from="1669290713680" duration="2000" />
       <workItem from="1669626312228" duration="193000" />
       <workItem from="1669626514655" duration="19792000" />
-      <workItem from="1669647479204" duration="22954000" />
+      <workItem from="1669647479204" duration="27144000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>

@@ -1,6 +1,7 @@
 //SCHEDULING
 #include <stdio.h>
 #include <stdlib.h>
+#include <
 
 #define P_NUM 2
 #define Quant1 1
@@ -12,7 +13,7 @@ float avg_wt, avg_tat;
 int main(int argc, char * argv[]) {
 
     for (int i = 0; i < P_NUM ; ++i) {
-
+        fork
     }
 
 }
