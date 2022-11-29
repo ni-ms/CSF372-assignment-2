@@ -18,9 +18,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
+      <change afterPath="$PROJECT_DIR$/out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main3.out" beforeDir="false" afterPath="$PROJECT_DIR$/main3.out" afterDir="false" />
@@ -190,7 +191,7 @@
       <workItem from="1669626514655" duration="19792000" />
       <workItem from="1669647479204" duration="27773000" />
       <workItem from="1669726226709" duration="9281000" />
-      <workItem from="1669741588430" duration="6553000" />
+      <workItem from="1669741588430" duration="10728000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>

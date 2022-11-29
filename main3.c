@@ -22,7 +22,7 @@
 int* arr1, * arr2;
 int iVal, jVal, kVal;
 char * mat1, * mat2, * mat3;
-long **ans;
+long *ans;
 FILE *op;
 int indexV = 0;
 
@@ -30,8 +30,7 @@ int indexV = 0;
 int maxThreads;
 
 typedef struct thread{
-    int rowS, columnS;
-    int rowE, columnE;
+    int elemS, elemE;
 }thread_args;
 
 // Integers
@@ -41,63 +40,54 @@ void writeToFile(FILE *fp, int *arr, int size) {
     }
 }
 
-
 void* multiplyFun(void* args) {
     //get row and column
     //multiply
     thread_args *t = (thread_args *) args;
-    int rowS = t->rowS;
-    int columnS = t->columnS;
-    int rowE = t->rowE;
-    int columnE = t->columnE;
-    int i, j, k;
-    /*printf("Array 1 is: \n");
-    for (i = 0; i < iVal*jVal; i++) {
-        printf("%d ", arr1[i]);
+    int elemE = t->elemE;
+    int elemS = t->elemS;
+
+
+    //TO SEE IF ARRAY IS BEING READ
+    FILE *fpa = fopen("z1.txt", "w");
+    fprintf(fpa,"Array 1 is: \n");
+    for (int i = 0; i < iVal*jVal; i++) {
+        fprintf(fpa,"%d ", arr1[i]);
         if(i%jVal == jVal-1){
-            printf("\n");
-        }
-    }*/
-
-
-    //calculate product
-if(rowE< iVal && columnE < jVal) {
-    for (i = rowS; i < rowE; i++) {
-        for (j = columnS; j < columnE; j++) {
-            printf("Element being calculated is: %d %d\n", i, j);
-            /*ans[i][j] += arr1[i*jVal + k] * arr2[j*jVal + k];*/
-            long temp = 0;
-            for (int p = 0; p < jVal; p++) {
-                temp += arr1[i * jVal + p] * arr2[j * jVal + p];
-                /* printf("the multiplicands are: %d %d\n", arr1[i*jVal + p], arr2[j*jVal + p]);*/
-            }
-            ans[indexV] = temp;
-            indexV++;
-            printf("The product is: %ld\n", temp);
-
-
-            /*printf("\nRow values are:\n");
-                for(int l = 0; l < jVal; l++){
-
-                    printf("%d ", arr1[i*jVal + l]);
-
-                }
-            printf("\nColumn values are:\n");
-            for (int m = 0; m < jVal; ++m) {
-
-                printf("%d ",arr2[j*jVal + m] );
-            }
-                printf("\n");
-            printf("\nproduct is: %lu", temp);*/
-
+            fprintf(fpa,"\n");
         }
     }
-}
+    fprintf(fpa,"\n\nArray 2 is: \n");
+    for (int i = 0; i < kVal*jVal; i++) {
+        fprintf(fpa,"%d ", arr2[i]);
+       if(i%jVal == jVal-1){
+            fprintf(fpa,"\n");
+        }
+    }
+
+    FILE *fp = fopen("z2.txt", "w");
+
+
+    //ival = 20, jvl = 50, kval = 20
+    for(int p = 0; p < iVal; p++){
+        for (int q = 0; q < kVal; ++q) {
+            for(int r = 0; r < jVal; r++){
+              ans[p*kVal + q] += arr1[p*jVal + r] * arr2[q*jVal + r];
+
+            }
+            fprintf(fp,"Index: %d, Value: %ld\n", p*kVal + q, ans[p*kVal + q]);
+        }
+
+    }
+
+
+
 
 
         pthread_exit(NULL);
         return NULL;
 }
+
 
 int main(int argc, char * argv[]){
    if(argc != 7){
@@ -132,10 +122,8 @@ int main(int argc, char * argv[]){
     int prev = 0;
     int temp = getMax(((iVal*kVal) / maxThreads) , 1);
     for (int i = 0; i < maxThreads; ++i) {
-    inp[i].columnS = prev;
-    inp[i].rowS = prev;
-    inp[i].rowE = prev + temp;
-    inp[i].columnE = prev + temp;
+    inp[i].elemS = prev;
+    inp[i].elemE = prev + temp;
     prev = prev + temp + 1;
 /*
 
@@ -153,13 +141,14 @@ int main(int argc, char * argv[]){
         pthread_join(threads[i], NULL);
     }
 
-    printf("Output Matrix:");
+    FILE *op = fopen("out.txt", "w");
+    fprintf(op,"Output Matrix:");
     for (int i = 0; i < iVal; i++) {
         for (int k = 0; k < kVal; k++) {
-            printf("(Index is: %d)", i*jVal + k);
-            printf("%lu ", ans[i*jVal + k]);
+            fprintf(op,"(Index is: %d)", i*jVal + k);
+            fprintf(op,"%lu ", ans[i*jVal + k]);
         }
-        printf("\n");
+        fprintf(op,"\n");
     }
 
  /*   printf("For array1:\n");
