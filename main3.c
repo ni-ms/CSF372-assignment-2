@@ -16,6 +16,7 @@
 
 #define MAXSIZE 1000
 #define ARR_SIZE 1000
+#define MEM_SIZE 5120
 
 // Program to multiply the two elements
 int* arr1, * arr2;
@@ -49,6 +50,14 @@ void* multiplyFun(void* args){
     int rowE = t->rowE;
     int columnE = t->columnE;
     int i, j, k;
+    /*printf("Array 1 is: \n");
+    for (i = 0; i < iVal*jVal; i++) {
+        printf("%d ", arr1[i]);
+        if(i%jVal == jVal-1){
+            printf("\n");
+        }
+    }*/
+
     for (i = rowS; i < rowE; i++) {
         for (j = columnS; j < columnE; j++) {
             //CHECK IF PRODUCT IS
@@ -58,6 +67,7 @@ void* multiplyFun(void* args){
             }
         }
     }
+    pthread_exit(NULL);
     return NULL;
 }
 int main(int argc, char * argv[]){
@@ -74,11 +84,11 @@ int main(int argc, char * argv[]){
 
 
     key_t key = ftok("./cmake-build-debug/shm/shmfile1.txt", 65);
-    int shmid = shmget(key,ARR_SIZE,0666|IPC_CREAT);
+    int shmid = shmget(key,MEM_SIZE,0666|IPC_CREAT);
     arr1 = (int*) shmat(shmid,(void*)0,0);
 
     key_t key2 = ftok("./cmake-build-debug/shm/shmfile2.txt", 65);
-    int shmid2 = shmget(key2,ARR_SIZE,0666|IPC_CREAT);
+    int shmid2 = shmget(key2,MEM_SIZE,0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid2,(void*)0,0);
 
 
@@ -100,6 +110,7 @@ int main(int argc, char * argv[]){
 
     for (int i = 0; i < maxThreads; ++i) {
         pthread_create(&threads[i], NULL, multiplyFun, &inp[i]);
+        pthread_join(threads[i], NULL);
     }
 
 

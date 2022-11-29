@@ -14,7 +14,7 @@
 #define getMax(x,y) (((x) >= (y)) ? (x) : (y))
 
 #define MAX_SIZE 1000000
-#define MEM_SIZE 4096
+#define MEM_SIZE 5120
 #define ARR_SIZE 1000
 
 
@@ -54,7 +54,7 @@ void getLineIndex(FILE *fp, int *var){
             (*var)++;
         }
     }
-    printf("Number of lines in file: %d\n", *var);
+  /*  printf("Number of lines in file: %d\n", *var);*/
 }
 
 void getOffset(FILE *fp, int offsetarr[]){
@@ -92,9 +92,8 @@ void* threadfun(void* args){
     /*int* off1 = inp->off1, *off2 = inp->off2;*/
     int toreadS = inp->readStart1;
     int toreadE = inp->readEnd1;
-    printf("Thread %d: Start: %d, End: %d\n", (int)pthread_self(), toreadS, toreadE);
-
-
+   /* printf("Thread %d: Start: %d, End: %d\n", (int)pthread_self(), toreadS, toreadE);
+*/
    /* //Read from file 1
     int p = 0;
     int readStart1 = iVal / maxThreads;
@@ -336,13 +335,13 @@ int main(int argc, char * argv[]){
 
     //create shared memory for array 1
     key_t key = ftok("./shm/shmfile1.txt",65);
-    int shmid = shmget(key,ARR_SIZE,0666|IPC_CREAT);
+    int shmid = shmget(key,MEM_SIZE,0666|IPC_CREAT);
     arr1 = (int*) shmat(shmid,(void*)0,0);
 
     //create shared memory for array 2
     key_t key1 = ftok("./shm/shmfile2.txt", 65);
-    printf("keys: %d %d\n", key, key1);
-    int shmid1 = shmget(key1, ARR_SIZE, 0666|IPC_CREAT);
+    /*printf("keys: %d %d\n", key, key1);*/
+    int shmid1 = shmget(key1, MEM_SIZE, 0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid1, (void*)0, 0);
 
 
