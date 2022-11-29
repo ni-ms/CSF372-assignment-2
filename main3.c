@@ -22,8 +22,9 @@
 int* arr1, * arr2;
 int iVal, jVal, kVal;
 char * mat1, * mat2, * mat3;
-int ans[MAXSIZE][MAXSIZE];
+long **ans;
 FILE *op;
+int indexV = 0;
 
 
 int maxThreads;
@@ -60,38 +61,39 @@ void* multiplyFun(void* args) {
 
 
     //calculate product
-    if(rowS < iVal && rowE < iVal && columnS < jVal && columnE < jVal){
-        for (i = rowS; i < rowE; i++) {
-            for (j = columnS; j < columnE; j++) {
-               printf("Element being calculated is: %d %d\n", i, j);
-                    /*ans[i][j] += arr1[i*jVal + k] * arr2[j*jVal + k];*/
-                    int temp = 0;
-                    for(int i = 0; i < jVal; i++){
-                        temp += arr1[i*jVal + k] * arr2[j*jVal + k];
-                    }
-                    ans[i][j] = temp;
-
-
-                printf("Row values are:\n");
-                    for(int l = 0; l < jVal; l++){
-
-                        printf("%d ", arr1[i*jVal + l]);
-
-                    }
-                printf("Column values are:\n");
-                for (int i = 0; i < jVal; ++i) {
-
-                    printf("%d ",arr2[j*jVal + i] );
-                }
-                    printf("\n");
-
-
+if(rowE< iVal && columnE < jVal) {
+    for (i = rowS; i < rowE; i++) {
+        for (j = columnS; j < columnE; j++) {
+            printf("Element being calculated is: %d %d\n", i, j);
+            /*ans[i][j] += arr1[i*jVal + k] * arr2[j*jVal + k];*/
+            long temp = 0;
+            for (int p = 0; p < jVal; p++) {
+                temp += arr1[i * jVal + p] * arr2[j * jVal + p];
+                /* printf("the multiplicands are: %d %d\n", arr1[i*jVal + p], arr2[j*jVal + p]);*/
             }
+            ans[indexV] = temp;
+            indexV++;
+            printf("The product is: %ld\n", temp);
+
+
+            /*printf("\nRow values are:\n");
+                for(int l = 0; l < jVal; l++){
+
+                    printf("%d ", arr1[i*jVal + l]);
+
+                }
+            printf("\nColumn values are:\n");
+            for (int m = 0; m < jVal; ++m) {
+
+                printf("%d ",arr2[j*jVal + m] );
+            }
+                printf("\n");
+            printf("\nproduct is: %lu", temp);*/
+
         }
     }
-    else{
+}
 
-    }
 
         pthread_exit(NULL);
         return NULL;
@@ -108,6 +110,7 @@ int main(int argc, char * argv[]){
     mat1 = argv[4];
     mat2 = argv[5];
     mat3 = argv[6];
+    printf("ival, jval, kval are: %d %d %d\n", iVal, jVal, kVal);
 
 
     key_t key = ftok("./cmake-build-debug/shm/shmfile1.txt", 65);
@@ -118,8 +121,12 @@ int main(int argc, char * argv[]){
     int shmid2 = shmget(key2,MEM_SIZE,0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid2,(void*)0,0);
 
+    ans = (long *) malloc(iVal*jVal*sizeof(long ));
 
     maxThreads = 50;
+
+    //TODO
+    //FIX THIS CODE
 
     thread_args *inp = malloc(maxThreads* sizeof (thread_args));
     int prev = 0;
@@ -148,8 +155,9 @@ int main(int argc, char * argv[]){
 
     printf("Output Matrix:");
     for (int i = 0; i < iVal; i++) {
-        for (int j = 0; j < jVal; j++) {
-            printf("%d ", ans[i][j]);
+        for (int k = 0; k < kVal; k++) {
+            printf("(Index is: %d)", i*jVal + k);
+            printf("%lu ", ans[i*jVal + k]);
         }
         printf("\n");
     }
