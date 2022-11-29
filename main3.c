@@ -18,8 +18,8 @@ void* multiplyFun(void* args){
     //multiply
 }
 int main(){
-    key_t key = ftok("shmfile",65);
-    int shmid = shmget(key,1024,0666|IPC_CREAT);
+    key_t key = ftok("./cmake-build-debug/shm/shmfile1.txt", 65);
+    int shmid = shmget(key,024,0666|IPC_CREAT);
     int*shmseg = (int*) shmat(shmid,(void*)0,0);
     printf("Data read from memory\n");
 

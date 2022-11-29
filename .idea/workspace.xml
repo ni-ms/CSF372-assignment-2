@@ -18,22 +18,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
-      <change afterPath="$PROJECT_DIR$/inp1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inp2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main2.c" beforeDir="false" afterPath="$PROJECT_DIR$/main2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main4.c" beforeDir="false" afterPath="$PROJECT_DIR$/main4.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trans1.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trans2.py" beforeDir="false" afterPath="$PROJECT_DIR$/trans2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +190,8 @@
       <workItem from="1669290713680" duration="2000" />
       <workItem from="1669626312228" duration="193000" />
       <workItem from="1669626514655" duration="19792000" />
-      <workItem from="1669647479204" duration="27144000" />
+      <workItem from="1669647479204" duration="27773000" />
+      <workItem from="1669726226709" duration="1109000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>

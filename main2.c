@@ -32,6 +32,10 @@ int line1size = 0, line2size = 0;
 FILE *fp3;
 int maxThreads;
 
+
+//Time taken:
+uint64_t totaltime = 0;
+
 typedef struct files{
     int readStart1, readEnd1;
 
@@ -147,7 +151,7 @@ void* threadfun(void* args){
             elapsed = (endT.tv_sec - startT.tv_sec) * 1000000000 + (endT.tv_nsec - startT.tv_nsec);
 /*        printf("Time taken to read line: %lu\n", elapsed);
         printf("threadno: %d: %s", (int)toreadS, line);*/
-
+            totaltime += elapsed;
             //Process line and store in array
             char *token = strtok(line, " ");
             isVisited1[i] = 1;
@@ -181,8 +185,8 @@ void* threadfun(void* args){
             read = getline(&line2, &len2, fp2);
             clock_gettime(CLOCK_MONOTONIC, &endT2);
             elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
-            printf("Time taken to read line: %lu\n", elapsed2);
-
+            /*printf("Time taken to read line: %lu\n", elapsed2);*/
+            totaltime += elapsed2;
 
             //FIX THIS
             int temp = 0;
@@ -314,7 +318,7 @@ int main(int argc, char * argv[]){
     getOffset(fp2, offsetarray2);
 
 
-    maxThreads = 12;
+    maxThreads = 1;
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
 
 
@@ -349,6 +353,8 @@ int main(int argc, char * argv[]){
         pthread_join(thread_create[i], NULL);
     }
 
+
+    printf("Total time taken for %d threads: %lu\n",maxThreads ,totaltime);
 
     printf("Write Data : ");
     /*for (int i = 0; i < ARR_SIZE; ++i) {
