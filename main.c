@@ -4,11 +4,6 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-//Concerns:
-//MMAP (fast for more i/o) or read file(fget)?
-//
-
-
 //Global variables
 FILE *fp1;
 FILE *fp2;

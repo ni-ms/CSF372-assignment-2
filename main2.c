@@ -29,7 +29,7 @@ int *arr2;
 int isVisited1[MAX_SIZE], isVisited2[MAX_SIZE];
 int *offsetarray1, *offsetarray2;
 int line1size = 0, line2size = 0;
-FILE *fp3;
+
 int maxThreads;
 
 
@@ -253,7 +253,7 @@ void* threadfun(void* args){
 
 }
 
-//MAIN FUNCTIOn
+//MAIN FUNCTION
 
 int main(int argc, char * argv[]){
     //Fork and exec
@@ -316,7 +316,6 @@ int main(int argc, char * argv[]){
 
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
-
 
     maxThreads = 1;
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
