@@ -1,7 +1,17 @@
 //SCHEDULING
 #include <stdio.h>
 #include <stdlib.h>
-//#include <
+#include <string.h>
+#include <pthread.h>
+#include <time.h>
+#include <stdint.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/time.h>
 
 #define P_NUM 2
 #define Quant1 1

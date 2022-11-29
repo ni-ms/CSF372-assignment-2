@@ -33,12 +33,32 @@ typedef struct thread{
 }thread_args;
 
 // Integers
+void writeToFile(FILE *fp, int *arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        fprintf(fp, "%d ", arr[i]);
+    }
+}
 
 
 void* multiplyFun(void* args){
     //get row and column
     //multiply
+    thread_args *t = (thread_args*) args;
+    int rowS = t->rowS;
+    int columnS = t->columnS;
+    int rowE = t->rowE;
+    int columnE = t->columnE;
+    int i, j, k;
+    for (i = rowS; i < rowE; i++) {
+        for (j = columnS; j < columnE; j++) {
+            //CHECK IF PRODUCT IS
+            for (k = 0; k < kVal; k++) {
 
+                ans[i][j] += arr1[i * kVal + k] * arr2[k * jVal + j];
+            }
+        }
+    }
+    return NULL;
 }
 int main(int argc, char * argv[]){
    if(argc != 7){
@@ -75,12 +95,12 @@ int main(int argc, char * argv[]){
     prev = prev + temp + 1;
    }
 
+    //Create threads
+    pthread_t *threads = malloc(maxThreads * sizeof(pthread_t));
 
-
-
-
-    //create threads
-    pthread_t * threads = malloc(sizeof(pthread_t)*maxThreads);
+    for (int i = 0; i < maxThreads; ++i) {
+        pthread_create(&threads[i], NULL, multiplyFun, &inp[i]);
+    }
 
 
 
