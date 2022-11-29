@@ -70,15 +70,17 @@ void* multiplyFun(void* args) {
 
     //ival = 20, jvl = 50, kval = 20
     for(int p = 0; p < iVal; p++){
-        for (int q = 0; q < kVal; ++q) {
+        for (int q = 0; q < kVal - 1; ++q) {
             for(int r = 0; r < jVal; r++){
               ans[p*kVal + q] += arr1[p*jVal + r] * arr2[q*jVal + r];
 
             }
-            fprintf(fp,"Index: %d, Value: %ld\n", p*kVal + q, ans[p*kVal + q]);
+            fprintf(fp,"%ld ", ans[p*kVal + q]);
         }
+        fprintf(fp,"\n");
 
     }
+    fclose(fp);
 
 
 
@@ -141,15 +143,6 @@ int main(int argc, char * argv[]){
         pthread_join(threads[i], NULL);
     }
 
-    FILE *op = fopen("out.txt", "w");
-    fprintf(op,"Output Matrix:");
-    for (int i = 0; i < iVal; i++) {
-        for (int k = 0; k < kVal; k++) {
-            fprintf(op,"(Index is: %d)", i*jVal + k);
-            fprintf(op,"%lu ", ans[i*jVal + k]);
-        }
-        fprintf(op,"\n");
-    }
 
  /*   printf("For array1:\n");
     for (int i = 0; i < 1000; ++i) {
