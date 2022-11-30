@@ -18,16 +18,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
+      <change afterPath="$PROJECT_DIR$/p1_scheduler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/matrixres.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2-utilities/matrixres.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-335aaffcfc97d01b78f8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-2ac5ab652bd4054cae3d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-11-28T09-05-13-0134.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-OS_assignment_2-Debug-86f9c3a0961bfd2bc302.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/OS_assignment_2.dir/main2.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/OS_assignment_2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main2.c" beforeDir="false" afterPath="$PROJECT_DIR$/main2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main3.out" beforeDir="false" afterPath="$PROJECT_DIR$/main3.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/z2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +88,11 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.OS_assignment_2">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MatrixGen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -164,6 +177,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="CMake Application.OS_assignment_2" />
+      <item itemvalue="Python.MatrixGen" />
+      <item itemvalue="Python.trans1" />
+      <item itemvalue="Python.trans2" />
+      <item itemvalue="Python.transscript" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.trans2" />
@@ -196,7 +216,9 @@
       <workItem from="1669726226709" duration="9281000" />
       <workItem from="1669741588430" duration="16244000" />
       <workItem from="1669776708034" duration="3635000" />
-      <workItem from="1669781183742" duration="5556000" />
+      <workItem from="1669781183742" duration="5881000" />
+      <workItem from="1669802516442" duration="1562000" />
+      <workItem from="1669812797429" duration="1440000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>

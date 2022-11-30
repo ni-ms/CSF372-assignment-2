@@ -16,6 +16,8 @@
 #define MAX_SIZE 1000000
 #define MEM_SIZE 5120
 #define ARR_SIZE 1000
+#define THREAD_NUM 10
+#define CLOCK_ID CLOCK_THREAD_CPUTIME_ID
 
 
 //Global variables
@@ -54,7 +56,7 @@ void getLineIndex(FILE *fp, int *var){
             (*var)++;
         }
     }
-  /*  printf("Number of lines in file: %d\n", *var);*/
+    /*  printf("Number of lines in file: %d\n", *var);*/
 }
 
 void getOffset(FILE *fp, int offsetarr[]){
@@ -71,7 +73,7 @@ void getOffset(FILE *fp, int offsetarr[]){
         if (c == '\n') {
             temp++;
             offsetarr[var] = temp;
-         /*   printf("Offset of line %d: %d\n", var, offsetarr[var]);*/
+            /*   printf("Offset of line %d: %d\n", var, offsetarr[var]);*/
             var++;
 
         }
@@ -92,16 +94,16 @@ void* threadfun(void* args){
     /*int* off1 = inp->off1, *off2 = inp->off2;*/
     int toreadS = inp->readStart1;
     int toreadE = inp->readEnd1;
-   /* //Read from file 1
-    int p = 0;
-    int readStart1 = iVal / maxThreads;
-    for (int i = 0; i < line1size; ++i) {
-        if(isVisited1[i] == 0){
-            for (int num = 0; num <  readStart1; ++num) {
-                isVisited1[num] = 1;
-            }
-        }
-    }*/
+    /* //Read from file 1
+     int p = 0;
+     int readStart1 = iVal / maxThreads;
+     for (int i = 0; i < line1size; ++i) {
+         if(isVisited1[i] == 0){
+             for (int num = 0; num <  readStart1; ++num) {
+                 isVisited1[num] = 1;
+             }
+         }
+     }*/
 
     //line to store the values for file 1
     char *line = NULL;
@@ -117,20 +119,20 @@ void* threadfun(void* args){
 //for loop to read the file
     for(int i = toreadS; i <= toreadE; i++){
         printf("Thread %ld: Reading line %d\n", (long)pthread_self(), i);
-      /*  fseek(fp1, offsetarray1[i], SEEK_SET);
-        read = getline(&line, &len, fp1);
-        if(read == -1){
-            fprintf(stderr, "ERROR: File not found\n");
-            exit(EXIT_FAILURE);
-        }
-        //printf("Line: %s\n", line);
-        char *token = strtok(line, " ");
-        while(token != NULL){
-            //printf("Token: %s\n", token);
-            arr1[arrIndex] = atoi(token);
-            arrIndex++;
-            token = strtok(NULL, " ");
-        }*/
+        /*  fseek(fp1, offsetarray1[i], SEEK_SET);
+          read = getline(&line, &len, fp1);
+          if(read == -1){
+              fprintf(stderr, "ERROR: File not found\n");
+              exit(EXIT_FAILURE);
+          }
+          //printf("Line: %s\n", line);
+          char *token = strtok(line, " ");
+          while(token != NULL){
+              //printf("Token: %s\n", token);
+              arr1[arrIndex] = atoi(token);
+              arrIndex++;
+              token = strtok(NULL, " ");
+          }*/
 
         if(isVisited1[i] == 0 && i < line1size){
             //FOR FILE ONE
@@ -138,13 +140,13 @@ void* threadfun(void* args){
             uint64_t elapsed;
             struct timespec endT, startT;
 
-            int ret0 = clock_gettime(CLOCK_MONOTONIC_RAW, &startT);
+            int ret0 = clock_gettime(CLOCK_ID, &startT);
             if(ret0 == -1){
                 fprintf(stderr, "ERROR: Clock not found\n");
                 exit(EXIT_FAILURE);
             }
             read = getline(&line, &len, fp1);
-            clock_gettime(CLOCK_MONOTONIC_RAW, &endT);
+            clock_gettime(CLOCK_ID, &endT);
             elapsed = (endT.tv_sec - startT.tv_sec) * 1000000000 + (endT.tv_nsec - startT.tv_nsec);
 /*        printf("Time taken to read line: %lu\n", elapsed);
         printf("threadno: %d: %s", (int)toreadS, line);*/
@@ -159,9 +161,9 @@ void* threadfun(void* args){
                 token = strtok(NULL, " ");
                 temp++;
             }
-          /*  for (int i = 0; i < line1size; ++i) {
-                printf("IsVisited1: %d\n", isVisited1[i]);
-            }*/
+            /*  for (int i = 0; i < line1size; ++i) {
+                  printf("IsVisited1: %d\n", isVisited1[i]);
+              }*/
 
             //reset line
             line = NULL;
@@ -173,13 +175,13 @@ void* threadfun(void* args){
             fseek(fp2, offsetarray2[i] - i - 1, SEEK_SET);
             uint64_t elapsed2;
             struct timespec endT2, startT2;
-            int ret1 = clock_gettime(CLOCK_MONOTONIC, &startT2);
+            int ret1 = clock_gettime(CLOCK_ID, &startT2);
             if(ret1 == -1){
                 fprintf(stderr, "ERROR: Clock not found\n");
                 exit(EXIT_FAILURE);
             }
             read = getline(&line2, &len2, fp2);
-            clock_gettime(CLOCK_MONOTONIC, &endT2);
+            clock_gettime(CLOCK_ID, &endT2);
             elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
             /*printf("Time taken to read line: %lu\n", elapsed2);*/
             totaltime += elapsed2;
@@ -278,15 +280,15 @@ int main(int argc, char * argv[]){
 
     //TODO
     //OPTIMIZATION: Use memory mapped files
-   /* int fd = open(mat1, O_RDONLY);
-    struct stat sb;
-    if(fstat(fd, &sb) == -1){
-        fprintf(stderr, "ERROR: fstat failed\n");
-        exit(EXIT_FAILURE);
-    }
-    char *file_in_mem = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    /* int fd = open(mat1, O_RDONLY);
+     struct stat sb;
+     if(fstat(fd, &sb) == -1){
+         fprintf(stderr, "ERROR: fstat failed\n");
+         exit(EXIT_FAILURE);
+     }
+     char *file_in_mem = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
 
-*/
+ */
 
     //transpose second matrix
     getLineIndex(fp1, &line1size);
@@ -294,26 +296,26 @@ int main(int argc, char * argv[]){
 
 
     //Allocate memory for visited
-   /* isVisited1 = malloc(line1size * sizeof(int));
-    isVisited2 = malloc(line2size * sizeof(int));*/
+    /* isVisited1 = malloc(line1size * sizeof(int));
+     isVisited2 = malloc(line2size * sizeof(int));*/
     offsetarray1 = malloc(line1size * sizeof(int));
     offsetarray2 = malloc(line2size * sizeof(int));
 
     for (int p = 0; p < line1size; ++p) {
-       /* isVisited1[p] = 0;*/
+        /* isVisited1[p] = 0;*/
         offsetarray1[p] = 0;
         offsetarray2[p] = 0;
     }
-   /* for (int p = 0; p < line2size; ++p) {
-        isVisited2[p] = 0;
-        offsetarray2[p] = 0;
-    }*/
+    /* for (int p = 0; p < line2size; ++p) {
+         isVisited2[p] = 0;
+         offsetarray2[p] = 0;
+     }*/
 
 
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
 
-    maxThreads = 40;
+    maxThreads = THREAD_NUM;
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
 
 
@@ -388,66 +390,64 @@ int main(int argc, char * argv[]){
 //free memory
     //free(arr1);
 
- /*   free(isVisited1);
-    free(isVisited2);*/
+    /*   free(isVisited1);
+       free(isVisited2);*/
     free(offsetarray1);
     free(offsetarray2);
     free(inp);
     return 0;
 
 
-   /* //NUMBER OF THREADS
-    int n = 10;
-    int rows = 25, columns = 25;
-    int *acc = malloc((rows * columns) * sizeof(int));
-    //Thread id is stored
-    pthread_t *tid = (pthread_t*)malloc(n * sizeof(pthread_t));
-    threadInp *obj = malloc(n * sizeof (threadInp));
-    for (int iVal = 0; iVal < n; ++iVal) {
-        //for rows, number of cols
-        obj[iVal].buff = malloc(columns* sizeof (int));
+    /* //NUMBER OF THREADS
+     int n = 10;
+     int rows = 25, columns = 25;
+     int *acc = malloc((rows * columns) * sizeof(int));
+     //Thread id is stored
+     pthread_t *tid = (pthread_t*)malloc(n * sizeof(pthread_t));
+     threadInp *obj = malloc(n * sizeof (threadInp));
+     for (int iVal = 0; iVal < n; ++iVal) {
+         //for rows, number of cols
+         obj[iVal].buff = malloc(columns* sizeof (int));
 
-    }
+     }
 
-    int nextStart = 0;
-    for (int iVal = 0; iVal < n; ++iVal) {
-        obj[iVal].length = 25;
-        obj[iVal].start = nextStart;
+     int nextStart = 0;
+     for (int iVal = 0; iVal < n; ++iVal) {
+         obj[iVal].length = 25;
+         obj[iVal].start = nextStart;
 
-        int temp;
-        if(rows%n == 0)
-            temp = rows/n;
-        else
-            temp = rows/n + 1;
+         int temp;
+         if(rows%n == 0)
+             temp = rows/n;
+         else
+             temp = rows/n + 1;
 
-        nextStart += temp;
+         nextStart += temp;
 
-        if(rows%n == 0)
-            obj[iVal].count = temp;
-        else{
-            if(iVal != n - 1)
-                obj[iVal].count = temp;
-            else
-                obj[iVal].count = rows%n;
-        }
-
-
-        obj[iVal].file_name = "in1.txt";
-        pthread_create(&tid[iVal], NULL, threadfun,(void*)obj );
-        pthread_join(&tid[iVal], NULL);
-    }
-
-    for (int iVal = 0; iVal < rows; iVal++) {
-
-        for (int jVal = 0; jVal < columns; jVal++)
-
-            //printf("%d ", [iVal * columns + jVal]);
-
-        printf("\n");
-
-    }
+         if(rows%n == 0)
+             obj[iVal].count = temp;
+         else{
+             if(iVal != n - 1)
+                 obj[iVal].count = temp;
+             else
+                 obj[iVal].count = rows%n;
+         }
 
 
-    */
+         obj[iVal].file_name = "in1.txt";
+         pthread_create(&tid[iVal], NULL, threadfun,(void*)obj );
+         pthread_join(&tid[iVal], NULL);
+     }
+
+     for (int iVal = 0; iVal < rows; iVal++) {
+
+         for (int jVal = 0; jVal < columns; jVal++)
+
+             //printf("%d ", [iVal * columns + jVal]);
+
+         printf("\n");
+
+     }
+     */
 }
 
