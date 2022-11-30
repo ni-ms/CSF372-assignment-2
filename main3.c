@@ -25,12 +25,14 @@ char * mat1, * mat2, * mat3;
 long *ans;
 FILE *op;
 int indexV = 0;
+int savearr[1000][1000];
 
 
 int maxThreads;
 
 typedef struct thread{
     int elemS, elemE;
+    int elem2S, elem2E;
 }thread_args;
 
 // Integers
@@ -41,51 +43,33 @@ void writeToFile(FILE *fp, int *arr, int size) {
 }
 
 void* multiplyFun(void* args) {
-    //get row and column
-    //multiply
     thread_args *t = (thread_args *) args;
     int elemE = t->elemE;
     int elemS = t->elemS;
+    int elem2E = t->elem2E;
+    int elem2S = t->elem2S;
 
 
-    //TO SEE IF ARRAY IS BEING READ
-  /*  FILE *fpa = fopen("z1.txt", "w");
-    fprintf(fpa,"Array 1 is: \n");
-    for (int i = 0; i < iVal*jVal; i++) {
-        fprintf(fpa,"%d ", arr1[i]);
-        if(i%jVal == jVal-1){
-            fprintf(fpa,"\n");
+    for (int i = elemS; i < elemE; ++i) {
+        int rowno = i/iVal;
+        int colno = i%kVal;
+        long sum = 0;
+        if(rowno < iVal && colno < kVal) {
+            for (int j = 0; j < jVal; ++j) {
+                    int num1 = arr1[rowno * jVal + j];
+                    int num2 = arr2[colno * jVal + j];
+                    sum += num1 * num2;
+                 }
+
+                ans[i] = sum;
+            printf("ans[%d] = %ld\n", i, ans[i]);
+
+            savearr[i / jVal][i % jVal] = ans[i];
         }
     }
-    fprintf(fpa,"\n\nArray 2 is: \n");
-    for (int i = 0; i < kVal*jVal; i++) {
-        fprintf(fpa,"%d ", arr2[i]);
-       if(i%jVal == jVal-1){
-            fprintf(fpa,"\n");
-        }
-    }*/
-
-  FILE *fp = fopen("z2.txt", "w");
-    //ival = 20, jvl = 50, kval = 20
-    for(int p = 0; p < iVal; p++){
-        for (int q = 0; q < kVal - 1; ++q) {
-            for(int r = 0; r < jVal; r++){
-              ans[p*kVal + q] += arr1[p*jVal + r] * arr2[q*jVal + r];
-
-            }
-            fprintf(fp,"%ld ", ans[p*kVal + q]);
-        }
-        fprintf(fp,"\n");
-
-    }
-    fclose(fp);
-
-
-
-
 
         pthread_exit(NULL);
-        return NULL;
+
 }
 
 
@@ -113,22 +97,22 @@ int main(int argc, char * argv[]){
 
     ans = (long *) malloc(iVal*jVal*sizeof(long ));
 
-    maxThreads = 50;
+
 
     //TODO
     //FIX THIS CODE
-
+    maxThreads = 50;
     thread_args *inp = malloc(maxThreads* sizeof (thread_args));
     int prev = 0;
     int temp = getMax(((iVal*kVal) / maxThreads) , 1);
     for (int i = 0; i < maxThreads; ++i) {
     inp[i].elemS = prev;
     inp[i].elemE = prev + temp;
-    prev = prev + temp + 1;
-/*
+    inp[i].elem2S = prev;
+    inp[i].elem2E = prev + temp;
+     //  printf("The start and end are: %d %d\n", inp[i].elemS, inp[i].elemE);
 
-        printf("Thread %d: %d %d %d %d\n", i, inp[i].rowS, inp[i].columnS, inp[i].rowE, inp[i].columnE);
-*/
+    prev = prev + temp + 1;
 
    }
 
@@ -137,20 +121,14 @@ int main(int argc, char * argv[]){
     pthread_t *threads = malloc(maxThreads * sizeof(pthread_t));
 
     for (int i = 0; i < maxThreads; ++i) {
-        pthread_create(&threads[i], NULL, multiplyFun, &inp[i]);
+        pthread_create(&threads[i], NULL, multiplyFun, (void*)(inp + i));
+    }
+    for (int i = 0; i < maxThreads; ++i) {
         pthread_join(threads[i], NULL);
     }
 
 
- /*   printf("For array1:\n");
-    for (int i = 0; i < 1000; ++i) {
-        printf("%d ", arr1[i]);
-    }
-    printf("\n\n\n");
-    printf("For array2:\n");
-    for (int i = 0; i < 1000; ++i) {
-        printf("%d ", arr2[i]);
-    }*/
+
     shmdt(arr1);
     shmctl(shmid,IPC_RMID,NULL);
     shmdt(arr2);

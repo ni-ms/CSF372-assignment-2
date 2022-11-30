@@ -92,8 +92,6 @@ void* threadfun(void* args){
     /*int* off1 = inp->off1, *off2 = inp->off2;*/
     int toreadS = inp->readStart1;
     int toreadE = inp->readEnd1;
-   /* printf("Thread %d: Start: %d, End: %d\n", (int)pthread_self(), toreadS, toreadE);
-*/
    /* //Read from file 1
     int p = 0;
     int readStart1 = iVal / maxThreads;
@@ -118,7 +116,7 @@ void* threadfun(void* args){
 
 //for loop to read the file
     for(int i = toreadS; i <= toreadE; i++){
-       /* printf("Thread %d: Reading line %d\n", (int)pthread_self(), i);*/
+        printf("Thread %ld: Reading line %d\n", (long)pthread_self(), i);
       /*  fseek(fp1, offsetarray1[i], SEEK_SET);
         read = getline(&line, &len, fp1);
         if(read == -1){
@@ -187,7 +185,7 @@ void* threadfun(void* args){
             /*printf("Time taken to read line: %lu\n", elapsed2);*/
             totaltime += elapsed2;
 
-            //FIX THIS
+
             int temp = 0;
             isVisited2[i] = 1;
             char *token2 = strtok(line2, " ");
@@ -316,7 +314,7 @@ int main(int argc, char * argv[]){
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
 
-    maxThreads = 1;
+    maxThreads = 22;
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
 
 
@@ -330,7 +328,7 @@ int main(int argc, char * argv[]){
     }
 
 
-    pthread_t *thread_create = malloc(maxThreads* sizeof(pthread_t));
+
 
 
     //create shared memory for array 1
@@ -345,9 +343,11 @@ int main(int argc, char * argv[]){
     arr2 = (int*) shmat(shmid1, (void*)0, 0);
 
 
-
+    pthread_t thread_create[maxThreads];
     for (int i = 0; i < maxThreads; ++i) {
         pthread_create(&thread_create[i], NULL, threadfun, (void*)(inp + i));
+    }
+    for (int i = 0; i < maxThreads; ++i) {
         pthread_join(thread_create[i], NULL);
     }
 
@@ -392,7 +392,6 @@ int main(int argc, char * argv[]){
     free(offsetarray1);
     free(offsetarray2);
     free(inp);
-    free(thread_create);
     return 0;
 
 
