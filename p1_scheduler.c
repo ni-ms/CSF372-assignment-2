@@ -16,7 +16,7 @@
 #define MAX_SIZE 1000000
 #define MEM_SIZE 5120
 #define ARR_SIZE 1000
-#define THREAD_NUM 10
+#define THREAD_NUM 100
 #define CLOCK_ID CLOCK_THREAD_CPUTIME_ID
 
 
@@ -94,16 +94,6 @@ void* threadfun(void* args){
     /*int* off1 = inp->off1, *off2 = inp->off2;*/
     int toreadS = inp->readStart1;
     int toreadE = inp->readEnd1;
-    /* //Read from file 1
-     int p = 0;
-     int readStart1 = iVal / maxThreads;
-     for (int i = 0; i < line1size; ++i) {
-         if(isVisited1[i] == 0){
-             for (int num = 0; num <  readStart1; ++num) {
-                 isVisited1[num] = 1;
-             }
-         }
-     }*/
 
     //line to store the values for file 1
     char *line = NULL;
@@ -118,21 +108,6 @@ void* threadfun(void* args){
 
 //for loop to read the file
     for(int i = toreadS; i <= toreadE; i++){
-        printf("Thread %ld: Reading line %d\n", (long)pthread_self(), i);
-        /*  fseek(fp1, offsetarray1[i], SEEK_SET);
-          read = getline(&line, &len, fp1);
-          if(read == -1){
-              fprintf(stderr, "ERROR: File not found\n");
-              exit(EXIT_FAILURE);
-          }
-          //printf("Line: %s\n", line);
-          char *token = strtok(line, " ");
-          while(token != NULL){
-              //printf("Token: %s\n", token);
-              arr1[arrIndex] = atoi(token);
-              arrIndex++;
-              token = strtok(NULL, " ");
-          }*/
 
         if(isVisited1[i] == 0 && i < line1size){
             //FOR FILE ONE
@@ -161,9 +136,6 @@ void* threadfun(void* args){
                 token = strtok(NULL, " ");
                 temp++;
             }
-            /*  for (int i = 0; i < line1size; ++i) {
-                  printf("IsVisited1: %d\n", isVisited1[i]);
-              }*/
 
             //reset line
             line = NULL;
@@ -186,7 +158,6 @@ void* threadfun(void* args){
             /*printf("Time taken to read line: %lu\n", elapsed2);*/
             totaltime += elapsed2;
 
-
             int temp = 0;
             isVisited2[i] = 1;
             char *token2 = strtok(line2, " ");
@@ -197,54 +168,10 @@ void* threadfun(void* args){
                 temp++;
             }
 
-
             //Reset line2
             line2 = NULL;
         }
-
-
-
     }
-
-
-    /*free(token);
-    free(line);*/
-
-/*
-   //Read from file 1
-    for (int iVal = 0; iVal < line1size; ++iVal) {
-        if(isVisited1[iVal] == 0){
-            isVisited1[iVal] = 1;
-            int temp = iVal;
-            char values[1000];
-            while(temp != 0){
-                off1 += offsetarray1[temp-1];
-                temp--;
-            }
-            fread(values, sizeof(char), off1, fp1);
-
-
-            break;
-        }
-    }
-
-    //read from file 2
-    *//*for (int kVal = 0; kVal < line2size; ++kVal) {
-        if(isVisited2[kVal] == 0){
-
-            isVisited2[kVal] = 1;
-            int temp = kVal;
-            char values[1000];
-            while(temp != 0){
-                fseek(fp1, off1, SEEK_SET);
-                fread(values, sizeof(char), 10, fp1);
-                temp--;
-            }
-            printf("Thread %d: %s\n", (int)pthread_self(), values);
-
-            break;
-        }
-    }*/
 
     pthread_exit(NULL);
 
@@ -266,8 +193,6 @@ int main(int argc, char * argv[]){
     mat1 = argv[4];
     mat2 = argv[5];
     mat3 = argv[6];
-
-
     //Allocate memory for array1 and array2
 
     //arr1 = malloc((iVal * jVal) * sizeof (int));
@@ -295,9 +220,6 @@ int main(int argc, char * argv[]){
     getLineIndex(fp2, &line2size);
 
 
-    //Allocate memory for visited
-    /* isVisited1 = malloc(line1size * sizeof(int));
-     isVisited2 = malloc(line2size * sizeof(int));*/
     offsetarray1 = malloc(line1size * sizeof(int));
     offsetarray2 = malloc(line2size * sizeof(int));
 
@@ -306,11 +228,6 @@ int main(int argc, char * argv[]){
         offsetarray1[p] = 0;
         offsetarray2[p] = 0;
     }
-    /* for (int p = 0; p < line2size; ++p) {
-         isVisited2[p] = 0;
-         offsetarray2[p] = 0;
-     }*/
-
 
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
@@ -327,10 +244,6 @@ int main(int argc, char * argv[]){
         prev = prev + temp +1;
 
     }
-
-
-
-
 
     //create shared memory for array 1
     key_t key = ftok("./shm/shmfile1.txt",65);
@@ -355,99 +268,20 @@ int main(int argc, char * argv[]){
 
     FILE *time= fopen("time.txt", "a");
 
-    fprintf(time,"Total time taken for %d threads: %lu\n",maxThreads ,totaltime);
+    fprintf(time,"Total time taken for %d threads: %llu\n",maxThreads ,totaltime);
     fclose(time);
-    printf("Write Data : ");
-    /*for (int i = 0; i < ARR_SIZE; ++i) {
-        shmseg[i] = arr1[i];
-    }*/
-    printf("Data written in memory:\n");
-    for (int i = 0; i < ARR_SIZE; ++i) {
-        /*printf("%d ", shmseg[i]);*/
-        printf("%d ", arr1[i]);
-    }
-    printf("\n");
-    for (int i = 0; i < ARR_SIZE; ++i) {
-        printf("%d ", arr2[i]);
-    }
+
     shmdt(arr1);
     shmdt(arr2);
 
 
-/*    printf("Value in array:");
-    for(int i = 0; i < iVal; i++){
-        for(int j = 0; j < jVal; j++){
-            printf("%d ", arr1[i * jVal + j]);
-        }
-        printf("\n");
-    }*/
-
-    //Close files
-
-
     fclose(fp1);
     fclose(fp2);
-//free memory
-    //free(arr1);
 
-    /*   free(isVisited1);
-       free(isVisited2);*/
     free(offsetarray1);
     free(offsetarray2);
     free(inp);
     return 0;
 
-
-    /* //NUMBER OF THREADS
-     int n = 10;
-     int rows = 25, columns = 25;
-     int *acc = malloc((rows * columns) * sizeof(int));
-     //Thread id is stored
-     pthread_t *tid = (pthread_t*)malloc(n * sizeof(pthread_t));
-     threadInp *obj = malloc(n * sizeof (threadInp));
-     for (int iVal = 0; iVal < n; ++iVal) {
-         //for rows, number of cols
-         obj[iVal].buff = malloc(columns* sizeof (int));
-
-     }
-
-     int nextStart = 0;
-     for (int iVal = 0; iVal < n; ++iVal) {
-         obj[iVal].length = 25;
-         obj[iVal].start = nextStart;
-
-         int temp;
-         if(rows%n == 0)
-             temp = rows/n;
-         else
-             temp = rows/n + 1;
-
-         nextStart += temp;
-
-         if(rows%n == 0)
-             obj[iVal].count = temp;
-         else{
-             if(iVal != n - 1)
-                 obj[iVal].count = temp;
-             else
-                 obj[iVal].count = rows%n;
-         }
-
-
-         obj[iVal].file_name = "in1.txt";
-         pthread_create(&tid[iVal], NULL, threadfun,(void*)obj );
-         pthread_join(&tid[iVal], NULL);
-     }
-
-     for (int iVal = 0; iVal < rows; iVal++) {
-
-         for (int jVal = 0; jVal < columns; jVal++)
-
-             //printf("%d ", [iVal * columns + jVal]);
-
-         printf("\n");
-
-     }
-     */
 }
 
