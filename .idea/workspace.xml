@@ -18,14 +18,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
-      <change afterPath="$PROJECT_DIR$/sched.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp1.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp1.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp2.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchmark_1.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchmark_2.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main4.c" beforeDir="false" afterPath="$PROJECT_DIR$/main4.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +201,7 @@
       <workItem from="1669812797429" duration="3798000" />
       <workItem from="1669982094254" duration="524000" />
       <workItem from="1670062235952" duration="4696000" />
-      <workItem from="1670067007752" duration="4692000" />
+      <workItem from="1670067007752" duration="6581000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
