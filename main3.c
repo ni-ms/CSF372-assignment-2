@@ -94,7 +94,7 @@ int main(int argc, char * argv[]){
     int shmid2 = shmget(key2,MEM_SIZE,0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid2,(void*)0,0);
 
-    printf("Arra1 is: \n");
+    /*printf("Arra1 is: \n");
     for (int i = 0; i < iVal*jVal; ++i) {
         printf("%d ", arr1[i]);
         if(i%jVal == jVal-1){
@@ -107,10 +107,10 @@ int main(int argc, char * argv[]){
         if(i%jVal == jVal-1){
             printf("\n");
         }
-    }
+    }*/
 
     ans = (long *) malloc(iVal*kVal*sizeof(long ));
-    printf("ival*jval is: %d\n", iVal*kVal);
+  /*  printf("ival*jval is: %d\n", iVal*kVal);*/
 
 
     //TODO
