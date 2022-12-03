@@ -16,6 +16,7 @@
 #define MAX_SIZE 1000000
 #define MEM_SIZE 5120
 #define ARR_SIZE 1000
+#define THREAD_NUM 2
 
 
 //Global variables
@@ -313,7 +314,7 @@ int main(int argc, char * argv[]){
     getOffset(fp1, offsetarray1);
     getOffset(fp2, offsetarray2);
 
-    maxThreads = 40;
+    maxThreads = THREAD_NUM;
     thread_inp *inp = malloc(maxThreads * sizeof(thread_inp));
 
 
@@ -325,9 +326,6 @@ int main(int argc, char * argv[]){
         prev = prev + temp +1;
 
     }
-
-
-
 
 
     //create shared memory for array 1

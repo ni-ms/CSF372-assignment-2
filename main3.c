@@ -15,7 +15,7 @@
 #define getMax(x,y) (((x) >= (y)) ? (x) : (y))
 
 #define MAXSIZE 1000
-#define ARR_SIZE 1000
+#define ARR_SIZE 2500
 #define MEM_SIZE 5120
 
 // Program to multiply the two elements
@@ -25,7 +25,7 @@ char * mat1, * mat2, * mat3;
 long *ans;
 FILE *op;
 int indexV = 0;
-long savearr[1000][1000];
+long savearr[MEM_SIZE][MEM_SIZE];
 
 
 int maxThreads;
@@ -61,7 +61,7 @@ void* multiplyFun(void* args) {
                  }
 
                 ans[i] = sum;
-            printf("ans[%d] = %ld\n", i, ans[i]);
+          //  printf("ans[%d] = %ld\n", i, ans[i]);
 
             savearr[i / jVal][i % jVal] = ans[i];
         }
@@ -94,8 +94,23 @@ int main(int argc, char * argv[]){
     int shmid2 = shmget(key2,MEM_SIZE,0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid2,(void*)0,0);
 
-    ans = (long *) malloc(iVal*jVal*sizeof(long ));
+    printf("Arra1 is: \n");
+    for (int i = 0; i < iVal*jVal; ++i) {
+        printf("%d ", arr1[i]);
+        if(i%jVal == jVal-1){
+            printf("\n");
+        }
+    }
+    printf("Arra2 is: \n");
+    for (int i = 0; i < jVal*kVal; ++i) {
+        printf("%d ", arr2[i]);
+        if(i%jVal == jVal-1){
+            printf("\n");
+        }
+    }
 
+    ans = (long *) malloc(iVal*kVal*sizeof(long ));
+    printf("ival*jval is: %d\n", iVal*kVal);
 
 
     //TODO
@@ -130,7 +145,12 @@ int main(int argc, char * argv[]){
     FILE *outfp = fopen("out.txt", "w");
     for (int i = 0; i < iVal; ++i) {
         for (int j = 0; j < kVal; ++j) {
-            fprintf(outfp, "%ld ", ans[i*kVal + j]);
+
+            fprintf(outfp, "%ld", ans[i*kVal + j]);
+            if(j != kVal-1){
+                fprintf(outfp, " ");
+            }
+
         }
         fprintf(outfp, "\n");
     }
@@ -140,6 +160,12 @@ int main(int argc, char * argv[]){
     shmctl(shmid,IPC_RMID,NULL);
     shmdt(arr2);
     shmctl(shmid2,IPC_RMID,NULL);
+
+    free(threads);
+    free(inp);
+    free(ans);
+    fclose(outfp);
+
     return 0;
 }
 

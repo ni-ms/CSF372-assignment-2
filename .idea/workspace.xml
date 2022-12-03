@@ -18,14 +18,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
+      <change afterPath="$PROJECT_DIR$/Assignment2-utilities-20221203T114312Z-001.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities-20221124T095816Z-001.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/matrix1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/matrix2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/matrixres.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2-utilities/out.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/inp2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/in1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/in1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/in2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/in2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inp1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inp2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main2.c" beforeDir="false" afterPath="$PROJECT_DIR$/main2.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/main3.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main3.out" beforeDir="false" afterPath="$PROJECT_DIR$/main3.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main4.c" beforeDir="false" afterPath="$PROJECT_DIR$/main4.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +218,8 @@
       <workItem from="1669802516442" duration="1562000" />
       <workItem from="1669812797429" duration="3798000" />
       <workItem from="1669982094254" duration="524000" />
-      <workItem from="1670062235952" duration="1635000" />
+      <workItem from="1670062235952" duration="4696000" />
+      <workItem from="1670067007752" duration="1640000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
