@@ -101,7 +101,7 @@ void* threadfun(void* args){
 
 //for loop to read the file
     for(int i = toreadS; i <= toreadE; i++){
-        printf("Thread %ld: Reading line %d\n", (long)pthread_self(), i);
+        //printf("Thread %ld: Reading line %d\n", (long)pthread_self(), i);
 
 
         if(isVisited1[i] == 0 && i < line1size){
@@ -148,7 +148,7 @@ void* threadfun(void* args){
             read = getline(&line2, &len2, fp2);
             clock_gettime(CLOCK_MONOTONIC, &endT2);
             elapsed2 = (endT2.tv_sec - startT2.tv_sec) * 1000000000 + (endT2.tv_nsec - startT2.tv_nsec);
-
+        
             totaltime += elapsed2;
 
 
@@ -201,16 +201,16 @@ int main(int argc, char * argv[]) {
 
 
 
-    for (int avgl = 1; avgl < 1000; avgl++) {
+    for (int avgl = 1; avgl < 10; avgl++) {
 
         //RESET VARS
         uint64_t avgtimenum = 0;
-        totaltime = 0;
+
         line1size = 0;
         line2size = 0;
 
 
-        for (int th_count = 0; th_count < 10000;   ++th_count) {
+        for (int th_count = 0; th_count < 10;   ++th_count) {
 
             fp1 = fopen(mat1, "r");
             fp2 = fopen(mat2, "r");
@@ -259,17 +259,23 @@ int main(int argc, char * argv[]) {
             fclose(fp1);
             fclose(fp2);
 
-            free(offsetarray1);
-            free(offsetarray2);
+            offsetarray1 = NULL;
+            offsetarray2 = NULL;
+            arr1 = NULL;
+            arr2 = NULL;
+            fp1 = NULL;
+            fp2 = NULL;
             free(inp);
 
 
+        printf("Average time for %d threads is %lu\n", avgl, totaltime);
 
 
         }
+        totaltime = 0;
         avgtimenum = avgtimenum / 10000;
         FILE *top = fopen("time.txt", "a");
-        fprintf(top, "$d,%lu", avgl, avgtimenum);
+        fprintf(top, "%d,%lu\n", avgl, avgtimenum);
         fclose(top);
         
     }
