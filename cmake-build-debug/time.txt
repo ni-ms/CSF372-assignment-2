@@ -1,0 +1,4 @@
+Total time taken for 100 threads: 1872168
+Total time taken for 100 threads: 450847
+Total time taken for 100 threads: 1449000
+Total time taken for 100 threads: 329258

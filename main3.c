@@ -25,7 +25,7 @@ char * mat1, * mat2, * mat3;
 long *ans;
 FILE *op;
 int indexV = 0;
-int savearr[1000][1000];
+long savearr[1000][1000];
 
 
 int maxThreads;
@@ -46,11 +46,10 @@ void* multiplyFun(void* args) {
     thread_args *t = (thread_args *) args;
     int elemE = t->elemE;
     int elemS = t->elemS;
-    int elem2E = t->elem2E;
-    int elem2S = t->elem2S;
 
 
-    for (int i = elemS; i < elemE; ++i) {
+
+    for (int i = elemS; i <= elemE; ++i) {
         int rowno = i/iVal;
         int colno = i%kVal;
         long sum = 0;
@@ -127,6 +126,14 @@ int main(int argc, char * argv[]){
         pthread_join(threads[i], NULL);
     }
 
+
+    FILE *outfp = fopen("out.txt", "w");
+    for (int i = 0; i < iVal; ++i) {
+        for (int j = 0; j < kVal; ++j) {
+            fprintf(outfp, "%ld ", ans[i*kVal + j]);
+        }
+        fprintf(outfp, "\n");
+    }
 
 
     shmdt(arr1);

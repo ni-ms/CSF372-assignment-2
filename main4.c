@@ -26,6 +26,7 @@ int main(int argc, char * argv[]) {
     }
 
 } */
+//Argument 20 50 20 inp1.txt inp2.txt out.txt
 
 int main(){
     pid_t p1;
@@ -35,7 +36,7 @@ int main(){
     int status;
 
     if (p1 == 0){
-        execlp("main2.out", "P1", "", NULL);
+        execlp("./cmake-build-debug/main2.out", "20", "50","20","inp1.txt", "inp2.txt","out.txt" NULL);
     }
 
     else if (p2 > 0){
@@ -48,7 +49,7 @@ int main(){
 
         else if(p2 > 0){
             nanosleep(1000000);
-            execlp("main3.out", "P2", "",NULL);
+            execlp("./cmake-build-debug/main3.out", "P2", "",NULL);
         }
 
 
