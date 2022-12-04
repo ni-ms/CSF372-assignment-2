@@ -1,3 +1,3 @@
-/home/nikms/Desktop/GitRepos/OS-assignment-2/cmake-build-debug/CMakeFiles/OS_assignment_2.dir
-/home/nikms/Desktop/GitRepos/OS-assignment-2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/nikms/Desktop/GitRepos/OS-assignment-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nikms/Desktop/Backup/OS-assignment-2/cmake-build-debug/CMakeFiles/OS_assignment_2.dir
+/home/nikms/Desktop/Backup/OS-assignment-2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nikms/Desktop/Backup/OS-assignment-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

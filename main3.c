@@ -86,12 +86,12 @@ int main(int argc, char * argv[]){
     printf("ival, jval, kval are: %d %d %d\n", iVal, jVal, kVal);
 
 
-    key_t key = ftok("./cmake-build-debug/shm/shmfile1.txt", 65);
-    int shmid = shmget(key,MEM_SIZE,0666|IPC_CREAT);
+
+    int shmid = shmget(1234,MEM_SIZE,0666|IPC_CREAT);
     arr1 = (int*) shmat(shmid,(void*)0,0);
 
-    key_t key2 = ftok("./cmake-build-debug/shm/shmfile2.txt", 65);
-    int shmid2 = shmget(key2,MEM_SIZE,0666|IPC_CREAT);
+
+    int shmid2 = shmget(1235,MEM_SIZE,0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid2,(void*)0,0);
 
     /*printf("Arra1 is: \n");

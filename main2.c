@@ -329,14 +329,13 @@ int main(int argc, char * argv[]){
 
 
     //create shared memory for array 1
-    key_t key = ftok("./shm/shmfile1.txt",65);
-    int shmid = shmget(key,MEM_SIZE,0666|IPC_CREAT);
+
+    int shmid = shmget(1234,MEM_SIZE,0666|IPC_CREAT);
     arr1 = (int*) shmat(shmid,(void*)0,0);
 
     //create shared memory for array 2
-    key_t key1 = ftok("./shm/shmfile2.txt", 65);
-    /*printf("keys: %d %d\n", key, key1);*/
-    int shmid1 = shmget(key1, MEM_SIZE, 0666|IPC_CREAT);
+
+    int shmid1 = shmget(1235, MEM_SIZE, 0666|IPC_CREAT);
     arr2 = (int*) shmat(shmid1, (void*)0, 0);
 
 
