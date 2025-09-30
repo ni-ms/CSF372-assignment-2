@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
 }</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
   <component name="CMakeRunConfigurationManager">
-    <generated>
-      <config projectName="OS_assignment_2" targetName="OS_assignment_2" />
-    </generated>
+    <generated />
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -20,7 +27,96 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space" />
+    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
+      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/OS_assignment_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities-20221203T114312Z-001.zip" beforeDir="false" afterPath="$PROJECT_DIR$/zip_file/Assignment2-utilities-20221203T114312Z-001.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/MatrixGen.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/MatrixGen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/in1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/in1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/in2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/in2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2-utilities/out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/benchmark1.out" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/benchmark1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/benchmark_1.c" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/benchmark_1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/benchmark_2.c" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/benchmark_2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/inp1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/inp2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Benchmark/time.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/time.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-056d504f0a9ca4cfef69.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-5b2f4b86679f401e2762.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-f4637ada5d1489711ffc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-12-04T04-42-03-0604.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-OS_assignment_2-Debug-58b3334c93c98dff6615.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-6bbe3d3521e8d6cffb4c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputs/in1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inputs/in1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputs/in2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inputs/in2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/main2.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/main2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/main3.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/main3.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/main4.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/main4.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/multiply.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/multiply.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_alpha/p1_scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_alpha/p1_scheduler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/benchmark/benchmark1.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/benchmark/benchmark1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/cache-v2-088cea57252e10c8a248.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/cache-v2-088cea57252e10c8a248.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-1fcdb22694e3660481b0.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-1fcdb22694e3660481b0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-6a4ec6fdae4c630febb7.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-6a4ec6fdae4c630febb7.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/index-2022-12-04T05-02-07-0563.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/index-2022-12-04T05-02-07-0563.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/target-OS_assignment_final-Debug-0dd7ea14527befc164b3.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/target-OS_assignment_final-Debug-0dd7ea14527befc164b3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-6bbe3d3521e8d6cffb4c.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-6bbe3d3521e8d6cffb4c.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/OS_assignment_final.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/OS_assignment_final.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/OS_assignment_final" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/OS_assignment_final" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/inp1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/cmake-build-debug/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/inp2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inp1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inp2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/p1.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/p1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/p1.out" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/p1.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/p2.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/p2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev1/p2.out" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev1/p2.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev2/prog1_1.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev2/prog1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev2/prog2.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev2/prog2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os_rev2/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/archive/os_rev2/scheduler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/trans1.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/preprocessing/trans1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/trans2.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/preprocessing/trans2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/transscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/preprocessing/transscript.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,11 +139,17 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2022" />
     <option name="minorVersion" value="2.4" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2HdKKMZhV9ifO3G8gSMXfsLihiV" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,30 +162,41 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/nikms/Desktop/Backup/OS-assignment-2&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CPPToolchains&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nikms\Documents\GitHub\CSF372-assignment-2\zip_file" />
+      <recent name="C:\Users\nikms\Documents\GitHub\CSF372-assignment-2\archive" />
+      <recent name="C:\Users\nikms\Documents\GitHub\CSF372-assignment-2\scripts" />
+      <recent name="C:\Users\nikms\Documents\GitHub\CSF372-assignment-2\benchmark" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.OS_assignment_2">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MatrixGen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -105,6 +218,7 @@
     </configuration>
     <configuration name="trans1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -126,6 +240,7 @@
     </configuration>
     <configuration name="trans2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -147,6 +262,7 @@
     </configuration>
     <configuration name="transscript" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="OS-assignment-2" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -167,11 +283,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="CMake Application.OS_assignment_2" />
       <item itemvalue="Python.MatrixGen" />
       <item itemvalue="Python.trans1" />
       <item itemvalue="Python.trans2" />
       <item itemvalue="Python.transscript" />
+      <item itemvalue="CMake Application.OS_assignment_2" />
     </list>
     <recent_temporary>
       <list>
@@ -214,6 +330,8 @@
       <workItem from="1670075204907" duration="785000" />
       <workItem from="1670128919910" duration="3796000" />
       <workItem from="1670157129139" duration="3304000" />
+      <workItem from="1759223251337" duration="1417000" />
+      <workItem from="1759225453415" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
@@ -248,6 +366,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
