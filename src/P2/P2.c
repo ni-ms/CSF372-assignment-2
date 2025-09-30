@@ -27,11 +27,11 @@ typedef struct {
     int thread_id;
 } ThreadData;
 
-// Global variables for IPC
+
 int shmMatrixId1, shmMatrixId2, semId;
 Matrix *sharedMatrix1, *sharedMatrix2;
 
-// Function to wait on semaphore (P operation)
+
 void semWait(int semId) {
     struct sembuf sem_op = {0, -1, 0};
     if (semop(semId, &sem_op, 1) == -1) {
@@ -40,7 +40,7 @@ void semWait(int semId) {
     }
 }
 
-// Function to signal semaphore (V operation)
+
 void semSignal(int semId) {
     struct sembuf sem_op = {0, 1, 0};
     if (semop(semId, &sem_op, 1) == -1) {
@@ -49,7 +49,7 @@ void semSignal(int semId) {
     }
 }
 
-// Thread function for matrix multiplication
+
 void *multiply(void *arg) {
     ThreadData *data = (ThreadData *) arg;
 
@@ -71,7 +71,7 @@ void *multiply(void *arg) {
     return NULL;
 }
 
-// Function to validate matrix compatibility
+
 int validateMatrices(Matrix *mat1, Matrix *mat2) {
     if (mat1->cols != mat2->rows) {
         printf("Error: Matrix dimensions incompatible for multiplication\n");
@@ -89,7 +89,7 @@ int validateMatrices(Matrix *mat1, Matrix *mat2) {
     return 1;
 }
 
-// Function to print matrix (for debugging)
+
 void printMatrix(const char *name, Matrix *matrix) {
     printf("\n%s (%d x %d):\n", name, matrix->rows, matrix->cols);
     for (int i = 0; i < matrix->rows; i++) {
@@ -100,23 +100,22 @@ void printMatrix(const char *name, Matrix *matrix) {
     }
 }
 
-// Function to setup shared memory access
+
 void setupSharedMemory(int shmId1, int shmId2, int semaphoreId) {
-    // Attach to shared memory for matrix1
     sharedMatrix1 = (Matrix *) shmat(shmId1, NULL, 0);
     if (sharedMatrix1 == (void *) -1) {
         perror("Failed to attach shared memory for matrix1");
         exit(1);
     }
 
-    // Attach to shared memory for matrix2
+
     sharedMatrix2 = (Matrix *) shmat(shmId2, NULL, 0);
     if (sharedMatrix2 == (void *) -1) {
         perror("Failed to attach shared memory for matrix2");
         exit(1);
     }
 
-    // Store semaphore ID
+
     semId = semaphoreId;
 
     printf("Successfully attached to shared memory:\n");
@@ -124,7 +123,7 @@ void setupSharedMemory(int shmId1, int shmId2, int semaphoreId) {
            shmId1, shmId2, semaphoreId);
 }
 
-// Function to cleanup shared memory
+
 void cleanupSharedMemory() {
     printf("Detaching from shared memory...\n");
 
@@ -143,7 +142,7 @@ void cleanupSharedMemory() {
     printf("Shared memory cleanup completed\n");
 }
 
-// Signal handler for cleanup
+
 void signalHandler(int signal) {
     printf("\nReceived signal %d, cleaning up...\n", signal);
     cleanupSharedMemory();
@@ -151,51 +150,50 @@ void signalHandler(int signal) {
 }
 
 int main(int argc, char *argv[]) {
-    // Check command line arguments
     if (argc != 4) {
         printf("Usage: %s <matrix1_shm_id> <matrix2_shm_id> <semaphore_id>\n", argv[0]);
         printf("Example: %s 123456 654321 789012\n", argv[0]);
         exit(1);
     }
 
-    // Parse command line arguments
+
     int shmId1 = atoi(argv[1]);
     int shmId2 = atoi(argv[2]);
     int semaphoreId = atoi(argv[3]);
 
-    // Setup signal handlers
+
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
 
     printf("Matrix Multiplier Program - Part 2 of Matrix Multiplication System\n");
     printf("================================================================\n");
 
-    // Setup shared memory access
+
     setupSharedMemory(shmId1, shmId2, semaphoreId);
 
-    // Use semaphore to safely access shared memory
+
     semWait(semId);
 
-    // Validate matrix compatibility
+
     if (!validateMatrices(sharedMatrix1, sharedMatrix2)) {
         semSignal(semId);
         cleanupSharedMemory();
         exit(1);
     }
 
-    // Print matrices for verification
+
     printMatrix("Matrix 1", sharedMatrix1);
     printMatrix("Matrix 2", sharedMatrix2);
 
     semSignal(semId);
 
-    // Prepare result matrix
+
     Matrix resultMatrix;
     memset(&resultMatrix, 0, sizeof(Matrix));
     resultMatrix.rows = sharedMatrix1->rows;
     resultMatrix.cols = sharedMatrix2->cols;
 
-    // Determine optimal number of threads (don't exceed matrix rows or MAX_THREADS)
+
     int num_threads = (sharedMatrix1->rows < MAX_THREADS) ? sharedMatrix1->rows : MAX_THREADS;
     int rows_per_thread = sharedMatrix1->rows / num_threads;
     int remaining_rows = sharedMatrix1->rows % num_threads;
@@ -203,7 +201,7 @@ int main(int argc, char *argv[]) {
     printf("\nStarting matrix multiplication with %d threads\n", num_threads);
     printf("Rows per thread: %d, Remaining rows: %d\n", rows_per_thread, remaining_rows);
 
-    // Allocate memory for threads and thread data
+
     pthread_t *threads = malloc(num_threads * sizeof(pthread_t));
     ThreadData *thread_data = malloc(num_threads * sizeof(ThreadData));
 
@@ -213,13 +211,13 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    // Create threads for matrix multiplication
+
     int current_row = 0;
     for (int i = 0; i < num_threads; i++) {
         thread_data[i].row_start = current_row;
         thread_data[i].row_end = current_row + rows_per_thread - 1;
 
-        // Distribute remaining rows among first threads
+
         if (i < remaining_rows) {
             thread_data[i].row_end++;
         }
@@ -240,7 +238,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Wait for all threads to finish
+
     printf("\nWaiting for threads to complete...\n");
     for (int i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
@@ -248,10 +246,10 @@ int main(int argc, char *argv[]) {
 
     printf("All threads completed successfully\n");
 
-    // Print result matrix
+
     printMatrix("Result Matrix", &resultMatrix);
 
-    // Save the result in a text file
+
     FILE *outputFile = fopen("result.txt", "w");
     if (outputFile == NULL) {
         perror("Failed to open output file");
@@ -277,7 +275,7 @@ int main(int argc, char *argv[]) {
     fclose(outputFile);
     printf("\nResult saved to result.txt\n");
 
-    // Cleanup
+
     free(threads);
     free(thread_data);
     cleanupSharedMemory();

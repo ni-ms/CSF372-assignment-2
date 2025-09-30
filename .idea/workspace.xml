@@ -27,15 +27,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="allocated space">
-      <change afterPath="$PROJECT_DIR$/src/P1/P1.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/P1/file1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/P1/file2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/P2/P2.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark/inp1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inp1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark/inp2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark/inp2.txt" afterDir="false" />
+    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="Modified the code">
+      <change beforePath="$PROJECT_DIR$/src/P1/P1.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/P1/P1.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P2/P2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/P2/P2.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +50,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ni-ms"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ni-ms/CSF372-assignment-2.git",
+    "accountId": "9c1b26ea-a7fc-4693-92f8-2b9c4dd6c331"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Users/nikms/Documents/GitHub/CSF372-assignment-2/archive/os_rev2/prog1.c" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/nikms/Documents/GitHub/CSF372-assignment-2/src/P1/P1.c" root0="SKIP_HIGHLIGHTING" />
@@ -269,7 +275,7 @@
       <workItem from="1670128919910" duration="3796000" />
       <workItem from="1670157129139" duration="3304000" />
       <workItem from="1759223251337" duration="1417000" />
-      <workItem from="1759225453415" duration="3995000" />
+      <workItem from="1759225453415" duration="4184000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
@@ -299,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1669047354935</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modified the code">
+      <option name="closed" value="true" />
+      <created>1759230494883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1759230494883</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +340,8 @@
     <MESSAGE value="Working on readfile" />
     <MESSAGE value="Working on readfile, added multiply" />
     <MESSAGE value="allocated space" />
-    <option name="LAST_COMMIT_MESSAGE" value="allocated space" />
+    <MESSAGE value="Modified the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified the code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -29,13 +29,13 @@ int shmMatrixId1, shmMatrixId2;
 int mutexSem;
 Matrix *sharedMatrix1, *sharedMatrix2;
 
-// Signal handler for cleanup
+
 void signalHandler(int signal) {
     printf("\nReceived signal %d, cleaning up...\n", signal);
     exit(1);
 }
 
-// Function to wait on semaphore (P operation)
+
 void semWait(int semId) {
     struct sembuf sem_op = {0, -1, 0};
     if (semop(semId, &sem_op, 1) == -1) {
@@ -44,7 +44,7 @@ void semWait(int semId) {
     }
 }
 
-// Function to signal semaphore (V operation)
+
 void semSignal(int semId) {
     struct sembuf sem_op = {0, 1, 0};
     if (semop(semId, &sem_op, 1) == -1) {
@@ -53,7 +53,7 @@ void semSignal(int semId) {
     }
 }
 
-// Function to read text file (space-separated values)
+
 void readTextFile(const char *filename, Matrix *matrix) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -65,15 +65,15 @@ void readTextFile(const char *filename, Matrix *matrix) {
     int row = 0;
     int cols = 0;
 
-    // Read file line by line
+
     while (fgets(buffer, sizeof(buffer), file) != NULL && row < MAX_ROWS) {
-        // Skip empty lines and comments
+
         if (buffer[0] == '\n' || buffer[0] == '#') {
             continue;
         }
 
         char *saveptr;
-        // Use space, tab, and newline as delimiters
+
         char *token = strtok_r(buffer, " \t\n", &saveptr);
         int col = 0;
 
@@ -84,11 +84,11 @@ void readTextFile(const char *filename, Matrix *matrix) {
         }
 
         if (col == 0) {
-            continue; // Skip empty lines
+            continue;
         }
 
         if (row == 0) {
-            cols = col; // Set number of columns from first row
+            cols = col;
         } else if (col != cols) {
             printf("Inconsistent number of columns in %s at row %d\n", filename, row + 1);
             fclose(file);
@@ -104,21 +104,21 @@ void readTextFile(const char *filename, Matrix *matrix) {
     fclose(file);
 }
 
-// Function executed by each thread to read the text file
+
 void *readText(void *arg) {
     int threadId = *(int *) arg;
 
     char filename[20];
     sprintf(filename, "file%d.txt", threadId + 1);
 
-    // Create temporary matrix to read data
+
     Matrix tempMatrix;
     memset(&tempMatrix, 0, sizeof(Matrix));
 
-    // Read text file into temporary matrix
+
     readTextFile(filename, &tempMatrix);
 
-    // Use semaphore to safely copy to shared memory
+
     semWait(mutexSem);
 
     if (threadId == 0) {
@@ -136,7 +136,7 @@ void *readText(void *arg) {
     pthread_exit(NULL);
 }
 
-// Function to initialize the semaphore
+
 void initializeSemaphore() {
     union semun {
         int val;
@@ -157,9 +157,9 @@ void initializeSemaphore() {
     }
 }
 
-// Function to perform the IPC setup for shared memory and semaphore
+
 void setupIPC() {
-    // Create shared memory for matrix1
+
     shmMatrixId1 = shmget(IPC_PRIVATE, sizeof(Matrix), IPC_CREAT | 0666);
     if (shmMatrixId1 == -1) {
         perror("Failed to create shared memory for matrix1");
@@ -172,7 +172,7 @@ void setupIPC() {
         exit(1);
     }
 
-    // Create shared memory for matrix2
+
     shmMatrixId2 = shmget(IPC_PRIVATE, sizeof(Matrix), IPC_CREAT | 0666);
     if (shmMatrixId2 == -1) {
         perror("Failed to create shared memory for matrix2");
@@ -185,11 +185,11 @@ void setupIPC() {
         exit(1);
     }
 
-    // Initialize shared memory to zero
+
     memset(sharedMatrix1, 0, sizeof(Matrix));
     memset(sharedMatrix2, 0, sizeof(Matrix));
 
-    // Initialize the semaphore
+
     initializeSemaphore();
 
     printf("IPC Setup completed:\n");
@@ -198,11 +198,11 @@ void setupIPC() {
     printf("Semaphore ID: %d\n", mutexSem);
 }
 
-// Function to destroy shared memory and semaphore
+
 void cleanupIPC() {
     printf("Cleaning up IPC resources...\n");
 
-    // Detach and remove shared memory for matrix1
+
     if (sharedMatrix1 != NULL) {
         if (shmdt(sharedMatrix1) == -1) {
             perror("Failed to detach shared memory for matrix1");
@@ -213,7 +213,7 @@ void cleanupIPC() {
         perror("Failed to remove shared memory for matrix1");
     }
 
-    // Detach and remove shared memory for matrix2
+
     if (sharedMatrix2 != NULL) {
         if (shmdt(sharedMatrix2) == -1) {
             perror("Failed to detach shared memory for matrix2");
@@ -224,7 +224,7 @@ void cleanupIPC() {
         perror("Failed to remove shared memory for matrix2");
     }
 
-    // Remove the semaphore
+
     if (semctl(mutexSem, 0, IPC_RMID) == -1) {
         perror("Failed to remove semaphore");
     }
@@ -232,7 +232,7 @@ void cleanupIPC() {
     printf("IPC cleanup completed\n");
 }
 
-// Function to validate matrix compatibility for multiplication
+
 int validateMatrices() {
     if (sharedMatrix1->cols != sharedMatrix2->rows) {
         printf("Error: Matrix dimensions incompatible for multiplication\n");
@@ -249,7 +249,7 @@ int validateMatrices() {
     return 1;
 }
 
-// Function to print matrix
+
 void printMatrix(const char *name, Matrix *matrix) {
     printf("\n%s (%d x %d):\n", name, matrix->rows, matrix->cols);
     for (int i = 0; i < matrix->rows; i++) {
@@ -261,7 +261,7 @@ void printMatrix(const char *name, Matrix *matrix) {
 }
 
 int main() {
-    // Setup signal handlers for graceful cleanup
+
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
 
@@ -272,10 +272,10 @@ int main() {
     printf("Reading from text files (file1.txt and file2.txt)\n");
     printf("==============================================================\n");
 
-    // Setup IPC (shared memory and semaphore)
+
     setupIPC();
 
-    // Create two threads to read the text files
+
     printf("\nCreating threads to read text files...\n");
     for (int i = 0; i < 2; i++) {
         if (pthread_create(&threads[i], NULL, readText, &threadIds[i]) != 0) {
@@ -285,20 +285,20 @@ int main() {
         }
     }
 
-    // Wait for the threads to finish
+
     for (int i = 0; i < 2; i++) {
         pthread_join(threads[i], NULL);
     }
 
     printf("\nBoth text files read successfully\n");
 
-    // Validate matrix compatibility for multiplication
+
     if (!validateMatrices()) {
         cleanupIPC();
         exit(1);
     }
 
-    // Print the matrices
+
     printMatrix("Matrix 1", sharedMatrix1);
     printMatrix("Matrix 2", sharedMatrix2);
 
