@@ -27,9 +27,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="Modified the code">
-      <change beforePath="$PROJECT_DIR$/src/P1/P1.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/P1/P1.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/P2/P2.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/P2/P2.c" afterDir="false" />
+    <list default="true" id="4dbe4f5f-92b4-4345-aa69-7b9dd77d65f8" name="Changes" comment="Removed comments.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P3/P3.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/P3/P3.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +275,7 @@
       <workItem from="1670128919910" duration="3796000" />
       <workItem from="1670157129139" duration="3304000" />
       <workItem from="1759223251337" duration="1417000" />
-      <workItem from="1759225453415" duration="4184000" />
+      <workItem from="1759225453415" duration="5667000" />
     </task>
     <task id="LOCAL-00001" summary="Working on readfile">
       <created>1668626680744</created>
@@ -313,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759230494883</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Removed comments.">
+      <option name="closed" value="true" />
+      <created>1759231094202</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759231094202</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +349,8 @@
     <MESSAGE value="Working on readfile, added multiply" />
     <MESSAGE value="allocated space" />
     <MESSAGE value="Modified the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified the code" />
+    <MESSAGE value="Removed comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed comments." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
